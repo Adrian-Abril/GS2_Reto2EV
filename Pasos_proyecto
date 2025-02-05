@@ -1,0 +1,68 @@
+📌 FASE 1: PLANIFICACIÓN DEL PROYECTO
+🔹 Definir el alcance del proyecto
+
+Confirmar que la idea será una plataforma de voluntariado para entrega de medicinas.
+Determinar qué entidades tendrá la base de datos (Usuarios, Medicinas, Pedidos, etc.).
+Identificar los roles de usuario (Pacientes, Voluntarios, Administradores).
+🔹 Tecnologías a utilizar
+
+Frontend: Vue 3, Vue Router, Pinia, Vuetify, SASS.
+Backend: Node.js con Express (o Nest.js) + Base de datos PostgreSQL.
+Autenticación: JWT con roles de usuario.
+DevOps: Docker, Kubernetes, GitHub Actions, HTTPS en retocsv.es.
+🔹 Metodología de trabajo
+
+Uso de Gitflow con Pull Requests.
+Organización en sprints con metodologías ágiles (Scrum/Kanban).
+📌 FASE 2: DISEÑO DEL SISTEMA
+🔹 Modelo de datos (mínimo 3 entidades con relaciones)
+
+Usuarios (id, nombre, email, dirección, tipo_usuario [paciente/voluntario/admin], fecha_registro).
+Medicinas (id, nombre, descripción, stock, precio, fecha_vencimiento).
+Pedidos (id, paciente_id, voluntario_id, medicina_id, estado [pendiente/en camino/entregado], fecha_pedido).
+🔹 Diseño de la API RESTful
+
+Método	Endpoint	Descripción
+GET	/api/medicinas	Obtener todas las medicinas
+GET	/api/pedidos	Listar pedidos según el usuario
+POST	/api/pedidos	Crear un nuevo pedido
+PUT	/api/pedidos/:id	Actualizar estado del pedido
+DELETE	/api/pedidos/:id	Eliminar un pedido
+🔹 Diseño de UI/UX
+
+Wireframes y prototipos en Figma.
+Mobile-first con Vuetify + SASS (con BEM).
+📌 FASE 3: DESARROLLO
+🔹 Backend (Semana 1-2)
+✅ Configurar Node.js + Express + PostgreSQL.
+✅ Implementar CRUD de Usuarios, Medicinas y Pedidos.
+✅ Autenticación con JWT y roles de usuario.
+✅ Documentar API con Swagger.
+
+🔹 Frontend (Semana 3-4)
+✅ Configurar Vue 3 con Vue Router y Pinia.
+✅ Crear vistas públicas (inicio, búsqueda de medicinas).
+✅ Crear zona privada (gestión de pedidos).
+✅ Integrar API con Axios en el Store.
+
+🔹 HTML5 Canvas (Semana 5)
+✅ Crear el logo de la web con 3 partes diferenciadas.
+✅ Implementar interacción con hover para cambiar tamaño/posición.
+
+📌 FASE 4: DEVOPS Y DESPLIEGUE
+🔹 Entorno local con Docker (Semana 6)
+✅ Dockerizar backend, frontend y base de datos.
+✅ Orquestar con Docker Compose.
+
+🔹 Entorno en la nube con Kubernetes (Semana 7)
+✅ Configurar cluster de Kubernetes en AWS/GCP.
+✅ Implementar base de datos en servicio gestionado (AWS RDS).
+
+🔹 CI/CD con GitHub Actions (Semana 8)
+✅ Crear pipeline para despliegue automático en Kubernetes.
+✅ Implementar HTTPS con el subdominio de retocsv.es.
+
+📌 ENTREGA FINAL Y PRUEBA DE AUTORÍA
+✅ Revisar que todas las funcionalidades están completas.
+✅ Hacer pruebas de integración y aceptación.
+✅ Realizar la prueba de autoría.
