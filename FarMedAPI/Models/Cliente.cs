@@ -15,8 +15,7 @@ namespace FarMedAPI.Models
 
         public Cliente()
         {
-            Fecha_Registro = DateTime.UtcNow; // Asigna la fecha actual al crear un nuevo cliente
+            Fecha_Registro = DateTime.UtcNow;
         }
     }
 }
-
