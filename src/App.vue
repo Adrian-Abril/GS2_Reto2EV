@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { RouterView } from 'vue-router';
+import Header from '@/components/Header.vue';
 </script>
 
 <template>
-  <RouterView />
+  <Header />
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped lang="scss">
-   @use '@/assets/styles/main' as *;
-   @use '@/assets/styles/mixins' as *;
-   @use '@/assets/styles/variables' as *;
 </style>
