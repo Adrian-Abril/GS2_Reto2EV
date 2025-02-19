@@ -12,8 +12,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
-
 builder.Services.AddScoped<IClienteService, ClienteService>();
+
+builder.Services.AddScoped<IDetallePedidoService, DetallePedidoService>();
+builder.Services.AddScoped<IDetallePedidoRepository, DetallePedidoRepository>();
 
 
 var app = builder.Build();

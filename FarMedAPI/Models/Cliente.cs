@@ -1,5 +1,3 @@
-using System;
-
 namespace FarMedAPI.Models
 {
     public class Cliente
