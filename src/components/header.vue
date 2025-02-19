@@ -3,7 +3,7 @@
     <div class="container">
       <div class="logo">
         <img src="/src/assets/images/1.png" alt="VOLUNMED Logo" class="logo__image" />
-        <div>
+      <div>
           <h1>FARMED</h1>
           <span>Somos farmacéuticos</span>
         </div>
