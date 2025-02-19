@@ -2,8 +2,11 @@
   <header class="header">
     <div class="container">
       <div class="logo">
-        <h1>VOLUNMED</h1>
-        <span>Somos farmacéuticos</span>
+        <img src="/src/assets/images/1.png" alt="VOLUNMED Logo" class="logo__image" />
+        <div>
+          <h1>FARMED</h1>
+          <span>Somos farmacéuticos</span>
+        </div>
       </div>
       <nav class="nav">
         <ul>
@@ -17,7 +20,7 @@
         </ul>
       </nav>
       <div class="actions">
-        <button class="login">Iniciar sesión</button>
+        <router-link to="/login" color="primary" block class="login">Iniciar sesión</router-link>
         <button class="cart"></button>
       </div>
     </div>

@@ -1,16 +1,28 @@
+
 <template>
   <div class="login">
-    <h1>Iniciar Sesión</h1>
-    <p>Formulario de inicio de sesión próximamente...</p>
-  </div>
+        <div class="login__container">
+            <h1 class="login__title">Iniciar Sesión</h1>
+            <form class="login__form">
+                <div class="login__field">
+                    <label for="email" class="login__label">Correo Electrónico</label>
+                    <input type="email" id="email" class="login__input" placeholder="Introduce tu correo" required>
+                </div>
+                <div class="login__field">
+                    <label for="password" class="login__label">Contraseña</label>
+                    <input type="password" id="password" class="login__input" placeholder="Introduce tu contraseña" required>
+                </div>
+                <button type="submit" class="login__button">Acceder</button>
+                <a href="#" class="login__link">¿Olvidaste tu contraseña?</a>
+                <a href="#" class="login__link">Regisrarse</a>
+            </form>
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
 </script>
 
 <style scoped lang="scss">
-.login {
-  text-align: center;
-  padding: 2rem;
-}
+@use '../assets/styles/login.scss' as *;
 </style>
