@@ -2,7 +2,7 @@
   <header class="header">
     <div class="container">
       <div class="logo">
-        <h1>VOLUNMED</h1>
+        <h1>FARMED</h1>
         <span>Somos farmacéuticos</span>
       </div>
       <nav class="nav">
