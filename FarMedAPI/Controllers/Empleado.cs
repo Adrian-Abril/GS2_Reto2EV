@@ -54,10 +54,10 @@ namespace FarMedAPI.Controllers
             }
 
             // Actualizar datos del cliente
-            existingEmpleado.Nombre = updatedEmpleado.Id_Farmacia;
-            existingEmpleado.Email = updatedEmpleado.Nombre;
-            existingEmpleado.Contraseña = updatedEmpleado.Teléfono;
-            existingEmpleado.Teléfono = updatedEmpleado.Rol;
+            existingEmpleado.Id_Farmacia = updatedEmpleado.Id_Farmacia;
+            existingEmpleado.Nombre = updatedEmpleado.Nombre;
+            existingEmpleado.Teléfono = updatedEmpleado.Teléfono;
+            existingEmpleado.Rol = updatedEmpleado.Rol;
 
             await _empleadoService.UpdateAsync(existingEmpleado);
             return NoContent();
