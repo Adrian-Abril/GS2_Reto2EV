@@ -4,7 +4,11 @@ import Login from '../views/Login.vue';
 import Pedidos from '../views/Pedidos.vue';
 import Perfil from '../views/Perfil.vue';
 import Register from '../views/Register.vue';
+
+import Blog from '../views/Blog.vue'; 
+
 import Meds from '../views/Meds.vue';
+
 
 const routes = [
   { path: '/', component: Home, meta: { public: true } },
@@ -12,7 +16,11 @@ const routes = [
   { path: '/pedidos', component: Pedidos, meta: { requiresAuth: true } },
   { path: '/perfil', component: Perfil, meta: { requiresAuth: true } },
   { path: '/register', component: Register, meta: { public: true } },
+
+  { path: '/blog', component: Blog, meta: { public: true } },
+
   { path: '/medicamentos', component: Meds, meta: { public: true } },
+
 ];
 
 const router = createRouter({
