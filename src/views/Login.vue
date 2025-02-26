@@ -14,7 +14,7 @@
                 </div>
                 <button type="submit" class="login__button">Acceder</button>
                 <a href="#" class="login__link">¿Olvidaste tu contraseña?</a>
-                <a href="#" class="login__link">Regisrarse</a>
+                <router-link to="/register" class="login__link">Registrarse</router-link>
             </form>
         </div>
     </div>
