@@ -5,7 +5,7 @@ import Footer from '@/components/Footer.vue';
 import Login from '@/components/Login.vue';
 </script>
 
-<template>
+<template>  
   <Header />
   <main> <!-- article -->
     <RouterView />

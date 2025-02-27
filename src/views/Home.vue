@@ -72,5 +72,56 @@ import productcard from '@/components/productcard.vue';
 </script>
 
 <style scoped lang="scss">
-@use '../assets/styles/home' as *;
+@use "@/assets/styles/variables" as *;
+@use "@/assets/styles/mixins" as *;
+
+.categories, .store-info, .featured-products {
+    text-align: center;
+    padding: 30px 0;
+  
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+}
+
+.category-list, .product-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Estilos de la sección de la tienda */
+.store-info {
+    background-color: #f5f5f5;
+    padding: 40px 20px;
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+}
+
+/* Estilos para la sección de productos destacados */
+.featured-products {
+    background-color: #ffffff;
+    padding: 40px 20px;
+
+    .product-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+}
+
 </style>
