@@ -7,6 +7,7 @@ import Register from '../views/Register.vue';
 import Novedades from '../views/Novedades.vue';
 import Blog from '../views/Blog.vue'; 
 import Meds from '../views/Meds.vue';
+import Oportunidades from '../views/Oportunidades.vue';
 
 
 const routes = [
@@ -18,6 +19,7 @@ const routes = [
   { path: '/blog', component: Blog, meta: { public: true } },
   { path: '/medicamentos', component: Meds, meta: { public: true } },
   { path: '/novedades', component: Novedades, meta: { public: true } },
+  { path: '/oportunidades', component: Oportunidades, meta: { public: true } },
 
 ];
 
