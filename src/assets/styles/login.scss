@@ -24,6 +24,7 @@ body {
   align-items: center;
   width: 100%;
   padding-top: 100px;
+  padding-bottom: 170px;
 
   &__container {
     width: 90%;
@@ -91,8 +92,8 @@ body {
   &__link {
     margin-top: 1rem;
     display: block;
-    font-size: 0.9rem;
-    color: $secondary-color;
+    font-size: 1rem;
+    color: #007bff;
     text-decoration: none;
 
     &:hover {
