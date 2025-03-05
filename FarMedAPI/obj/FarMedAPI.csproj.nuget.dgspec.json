@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Honey\\Downloads\\GS2_Reto2EV\\FarMedAPI\\FarMedAPI.csproj": {}
+    "C:\\Users\\USUARIO\\Desktop\\GS2_Reto2EV\\FarMedAPI\\FarMedAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Honey\\Downloads\\GS2_Reto2EV\\FarMedAPI\\FarMedAPI.csproj": {
+    "C:\\Users\\USUARIO\\Desktop\\GS2_Reto2EV\\FarMedAPI\\FarMedAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Honey\\Downloads\\GS2_Reto2EV\\FarMedAPI\\FarMedAPI.csproj",
+        "projectUniqueName": "C:\\Users\\USUARIO\\Desktop\\GS2_Reto2EV\\FarMedAPI\\FarMedAPI.csproj",
         "projectName": "FarMedAPI",
-        "projectPath": "C:\\Users\\Honey\\Downloads\\GS2_Reto2EV\\FarMedAPI\\FarMedAPI.csproj",
-        "packagesPath": "C:\\Users\\Honey\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Honey\\Downloads\\GS2_Reto2EV\\FarMedAPI\\obj\\",
+        "projectPath": "C:\\Users\\USUARIO\\Desktop\\GS2_Reto2EV\\FarMedAPI\\FarMedAPI.csproj",
+        "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\USUARIO\\Desktop\\GS2_Reto2EV\\FarMedAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Honey\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
