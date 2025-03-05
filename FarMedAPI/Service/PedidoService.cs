@@ -17,24 +17,24 @@ namespace FarMedAPI.Service
             return await _pedidoRepository.GetAllAsync();
         }
 
-        public async Task<Cliente> GetByIdAsync(int id)
+        public async Task<Pedido> GetByIdAsync(int id)
         {
-            return await _clienteRepository.GetByIdAsync(id);
+            return await _pedidoRepository.GetByIdAsync(id);
         }
 
-        public async Task AddAsync(Cliente cliente)
+        public async Task AddAsync(Pedido pedido)
         {
-            await _clienteRepository.AddAsync(cliente);
+            await _pedidoRepository.AddAsync(pedido);
         }
 
-        public async Task UpdateAsync(Cliente cliente)
+        public async Task UpdateAsync(Pedido pedido)
         {
-            await _clienteRepository.UpdateAsync(cliente);
+            await _pedidoRepository.UpdateAsync(pedido);
         }
 
         public async Task DeleteAsync(int id)
         {
-            await _clienteRepository.DeleteAsync(id);
+            await _pedidoRepository.DeleteAsync(id);
         }
     }
 }

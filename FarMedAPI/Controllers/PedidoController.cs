@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using FarMedAPI.Service;
 using FarMedAPI.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace FarMedAPI.Controllers
 {
