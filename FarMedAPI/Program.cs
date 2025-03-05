@@ -29,6 +29,9 @@ builder.Services.AddScoped<IFarmaciaRepository, FarmaciaRepository>();
 builder.Services.AddScoped<IPedidoService, PedidoService>();
 builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
 
+builder.Services.AddScoped<IProductoService, ProductoService>();
+builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
+
 
 var app = builder.Build();
 
