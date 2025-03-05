@@ -9,6 +9,5 @@ namespace FarMedAPI.Repository
         Task AddAsync(Farmacia farmacia);
         Task UpdateAsync(Farmacia farmacia);
         Task DeleteAsync(int id);
-        Task UpdateAsync(Cliente farmacia);
     }
 }

@@ -27,7 +27,7 @@ namespace FarMedAPI.Service
             await _farmaciaRepository.AddAsync(farmacia);
         }
 
-        public async Task UpdateAsync(Cliente farmacia)
+        public async Task UpdateAsync(Farmacia farmacia)
         {
             await _farmaciaRepository.UpdateAsync(farmacia);
         }

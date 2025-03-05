@@ -23,6 +23,9 @@ builder.Services.AddScoped<IEmpleadoRepository, EmpleadoRepository>();
 builder.Services.AddScoped<IEntregaService, EntregaService>();
 builder.Services.AddScoped<IEntregaRepository, EntregaRepository>();
 
+builder.Services.AddScoped<IFarmaciaService, FarmaciaService>();
+builder.Services.AddScoped<IFarmaciaRepository, FarmaciaRepository>();
+
 
 var app = builder.Build();
 
