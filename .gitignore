@@ -1,1 +1,6 @@
 node_modules
+# Carpetas de compilación de .NET
+bin/
+obj/
+.vite/deps/
+
