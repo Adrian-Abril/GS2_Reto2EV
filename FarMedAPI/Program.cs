@@ -20,6 +20,9 @@ builder.Services.AddScoped<IDetallePedidoRepository, DetallePedidoRepository>();
 builder.Services.AddScoped<IEmpleadoService, EmpleadoService>();
 builder.Services.AddScoped<IEmpleadoRepository, EmpleadoRepository>();
 
+builder.Services.AddScoped<IEntregaService, EntregaService>();
+builder.Services.AddScoped<IEntregaRepository, EntregaRepository>();
+
 
 var app = builder.Build();
 
