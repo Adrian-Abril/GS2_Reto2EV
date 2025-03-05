@@ -2,11 +2,13 @@
   <header class="header">
     <div class="container">
       <div class="logo">
-        <img src="/src/assets/images/1.png" alt="VOLUNMED Logo" class="logo__image" />
-      <div>
-          <h1>FARMED</h1>
-          <span>Somos farmacéuticos</span>
-        </div>
+        <router-link to="/" class="logo__link">
+          <img src="/src/assets/images/1.png" alt="VOLUNMED Logo" class="logo__image" />
+          <div>
+            <h1>FARMED</h1>
+            <span>Somos farmacéuticos</span>
+          </div>
+        </router-link>
       </div>
       <nav class="nav">
         <ul>
@@ -18,7 +20,7 @@
         </ul>
       </nav>
       <div class="actions">
-        <router-link to="/login" color="primary" block class="login">Iniciar sesión</router-link>
+        <router-link to="/login" class="login">Iniciar sesión</router-link>
         <button class="cart"></button>
       </div>
     </div>
@@ -30,4 +32,15 @@
 
 <style scoped lang="scss">
 @use '@/../../assets/styles/components/header.scss' as *;
+
+.logo__link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo__image {
+  cursor: pointer;
+}
 </style>
