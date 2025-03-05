@@ -15,6 +15,6 @@
   </script>
   
   <style scoped lang="scss">
-  @use '../assets/styles/footer' as *;
+  @use '@/../../assets/styles/components/footer.scss' as *;
   </style>
   

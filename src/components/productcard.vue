@@ -16,6 +16,6 @@
   </script>
   
   <style scoped lang="scss">
-  @use '../assets/styles/productcard' as *;
+  @use '@../../../assets/styles/components/productcard.scss' as *;
   </style>
   

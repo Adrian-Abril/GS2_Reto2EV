@@ -20,6 +20,6 @@
   </script>
   
   <style scoped lang="scss">
-  @use '@/assets/styles/categorycard' as *;
+  @use '@/../../assets/styles/components/categorycard.scss' as *;
   </style>
   

@@ -12,10 +12,8 @@
         <ul>
           <li><router-link to="/">Categorías</router-link></li>
           <li><router-link to="/medicamentos">Medicamentos</router-link></li>
-          <li><router-link to="/promociones">Promociones</router-link></li>
           <li><router-link to="/novedades">Novedades</router-link></li>
           <li><router-link to="/oportunidades">Oportunidades</router-link></li>
-          <li><router-link to="/marcas">Marcas</router-link></li>
           <li><router-link to="/blog">Blog</router-link></li>
         </ul>
       </nav>
@@ -31,5 +29,5 @@
 </script>
 
 <style scoped lang="scss">
-@use '@/assets/styles/header' as *;
+@use '@/../../assets/styles/components/header.scss' as *;
 </style>

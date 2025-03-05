@@ -93,6 +93,6 @@
   </script>
   
   <style scoped lang="scss">
-  @import "@/assets/styles/oportunidades.scss";
+  @import "@/assets/styles/pages/oportunidades.scss";
   </style>
   

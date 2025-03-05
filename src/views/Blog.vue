@@ -39,6 +39,6 @@
   </script>
   
   <style scoped lang="scss">
-  @use '../assets/styles/blog.scss' as *;
+  @use '../assets/styles/pages/blog.scss' as *;
   </style>
   

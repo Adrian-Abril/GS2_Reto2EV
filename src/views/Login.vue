@@ -24,5 +24,5 @@
 </script>
 
 <style scoped lang="scss">
-@use '../assets/styles/login.scss' as *;
+@use '../assets/styles/pages/login.scss' as *;
 </style>

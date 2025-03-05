@@ -34,6 +34,6 @@
   </script>
   
   <style scoped lang="scss">
-  @use '../assets/styles/novedades.scss' as *;
+  @use '../assets/styles/pages/novedades.scss' as *;
   </style>
   

@@ -72,5 +72,5 @@ import productcard from '@/components/productcard.vue';
 </script>
 
 <style scoped lang="scss">
-@use '../assets/styles/home' as *;
+@use '../assets/styles/pages/home.scss' as *;
 </style>
