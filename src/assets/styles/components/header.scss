@@ -5,6 +5,8 @@
   background-color: #ffffff;
   padding: 15px 0;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1000;
 
   .container {
     width: 90%;
@@ -21,12 +23,12 @@
     gap: 10px;
 
     &__image {
-      width: 100px;
+      width: 90px;
       height: auto;
     }
 
     h1 {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: bold;
       color: #333;
       margin: 0;
@@ -38,19 +40,38 @@
     }
   }
 
+  /* MENÚ HAMBURGUESA - Mobile First */
   .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
     ul {
       list-style: none;
-      display: flex;
-      gap: 20px;
       padding: 0;
       margin: 0;
-      flex-grow: 1;
+      text-align: center;
 
       li {
+        margin: 15px 0;
+
         a {
           text-decoration: none;
-          font-size: 16px;
+          font-size: 22px;
+          font-weight: bold;
           color: #333;
           transition: color 0.3s ease;
 
@@ -60,8 +81,53 @@
         }
       }
     }
+
+    &--open {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
   }
 
+  /* BOTÓN HAMBURGUESA (REDUCIDO Y SEPARADO) */
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px; /* Más pequeño */
+    height: 22px; /* Más bajo */
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 1100;
+    position: relative;
+    margin-right: 20px; /* MÁS SEPARACIÓN */
+
+    div {
+      width: 100%;
+      height: 3px; /* Más delgado */
+      background-color: #333;
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &.open {
+      div:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+      }
+
+      div:nth-child(2) {
+        opacity: 0;
+      }
+
+      div:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+    }
+  }
+
+  /* ACCIONES (LOGIN Y CARRITO) */
   .actions {
     display: flex;
     align-items: center;
@@ -88,6 +154,37 @@
       background-size: cover;
       border: none;
       cursor: pointer;
+    }
+  }
+
+  /* ESTILOS PARA PANTALLAS GRANDES */
+  @media (min-width: 768px) {
+    .menu-toggle {
+      display: none;
+    }
+
+    .nav {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: auto;
+      height: auto;
+      background: none;
+      display: flex;
+      flex-direction: row;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+
+        li {
+          margin: 0;
+        }
+      }
     }
   }
 }
