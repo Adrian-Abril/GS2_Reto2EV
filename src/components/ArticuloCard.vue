@@ -7,7 +7,6 @@
         <span class="articulo-fecha">{{ articulo.fecha }}</span>
         <h3 class="articulo-titulo">{{ articulo.titulo }}</h3>
         <p class="articulo-extracto">{{ articulo.extracto }}</p>
-        <router-link :to="articulo.enlace" class="articulo-enlace">Leer más</router-link>
       </div>
     </div>
   </template>
