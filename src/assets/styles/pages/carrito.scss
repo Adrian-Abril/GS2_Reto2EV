@@ -1,7 +1,7 @@
 .carrito-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+  min-height: calc(100vh - 300px); /* Ajusta el valor según la altura de tu header y footer */
+  display: flex;
+  flex-direction: column;
     
     h1 {
       font-size: 2rem;
@@ -11,10 +11,12 @@
     }
     
     .carrito-vacio {
-      text-align: center;
-      padding: 3rem;
-      background-color: #f9f9f9;
-      border-radius: 8px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 0;
       
       p {
         font-size: 1.2rem;
