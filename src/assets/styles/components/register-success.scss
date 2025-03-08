@@ -1,0 +1,154 @@
+// Variables
+$primary-color: #0d6e72; // Color verde principal (FarMed)
+$accent-color: #f9a825; // Color naranja/dorado para subrayado
+$success-color: #27ae60; // Verde para el éxito
+$text-color: #333;
+$white: #fff;
+$light-gray: #f5f5f5;
+$border-color: #eee;
+
+// Overlay de éxito (fondo oscurecido)
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+// Tarjeta de éxito
+.success-card {
+  width: 100%;
+  max-width: 500px;
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  padding: 40px 30px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Icono de éxito
+.success-icon {
+  margin-bottom: 25px;
+  
+  svg {
+    animation: scaleIn 0.5s ease-out;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+// Título
+.success-title {
+  font-size: 1.8rem;
+  color: $success-color;
+  margin: 0 0 20px;
+  font-weight: 600;
+}
+
+// Mensaje de éxito
+.success-message {
+  font-size: 1.1rem;
+  color: $text-color;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+// Detalles del usuario
+.user-details {
+  background-color: $light-gray;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.detail-item {
+  margin-bottom: 10px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.detail-label {
+  font-weight: 600;
+  color: $primary-color;
+  display: inline-block;
+  min-width: 80px;
+}
+
+.detail-value {
+  color: $text-color;
+}
+
+// Mensaje de siguientes pasos
+.next-steps {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+// Botón para continuar
+.continue-button {
+  background-color: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.3);
+  }
+}
+
+// Responsive
+@media (max-width: 576px) {
+  .success-card {
+    padding: 30px 20px;
+  }
+  
+  .success-title {
+    font-size: 1.6rem;
+  }
+  
+  .success-message {
+    font-size: 1rem;
+  }
+}

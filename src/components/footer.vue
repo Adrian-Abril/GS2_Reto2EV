@@ -3,10 +3,9 @@
     <div class="container">
       <div class="footer-links">
         <nav>
-          <router-link to="/">Inicio</router-link>
-          <router-link to="/productos">Productos</router-link>
-          <router-link to="/servicios">Servicios</router-link>
-          <router-link to="/contacto">Contacto</router-link>
+          <router-link to="/home">Inicio</router-link>
+          <router-link to="/tienda">Productos</router-link>
+          <router-link to="/blog">Contacto</router-link>
         </nav>
       </div>
       <div class="footer-info">
@@ -19,7 +18,7 @@
       <div class="footer-legal">
         <router-link to="/terminos">Términos y condiciones</router-link>
         <router-link to="/privacidad">Política de privacidad</router-link>
-        <router-link to="/contacto">Contacto</router-link>
+        <router-link to="/blog">Contacto</router-link>
       </div>
       <p class="copyright">&copy; {{ new Date().getFullYear() }} FARMED. Todos los derechos reservados.</p>
     </div>

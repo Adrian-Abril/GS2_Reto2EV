@@ -1,86 +1,216 @@
-@import "@/assets/styles/_variables.scss";
+// Variables
+$primary-color: #0d6e72; // Color verde principal (FarMed)
+$accent-color: #f9a825; // Color naranja/dorado para subrayado
+$bg-color: #e0f2f1; // Color de fondo claro verde-azulado
+$text-color: #333;
+$placeholder-color: #999;
+$border-color: #ccc;
+$white: #fff;
+$font-family: 'Arial', sans-serif;
 
-
-.register {
+// Register Container - Fondo principal
+.register-container {
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f9f9f9;
+  background-color: $bg-color;
+  padding: 20px;
+}
 
-  &__container {
-    background: white;
-    padding: 3rem;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 500px; // Tamaño de la caja
-    text-align: center;
-  }
+// Register Card - Tarjeta blanca central
+.register-card {
+  width: 100%;
+  max-width: 500px;
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  overflow: hidden; // Evita que el contenido se salga
+}
 
-  &__title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
+// Logo y cabecera
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-  &__form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-  }
+.logo {
+  font-size: 2.5rem;
+  color: $primary-color;
+  margin: 0;
+  font-weight: 700;
+}
 
-  &__field {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
+.logo-underline {
+  width: 60px;
+  height: 3px;
+  background-color: $accent-color;
+  margin: 8px auto;
+}
 
-  &__label {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 0.4rem;
-    width: 100%;
-    max-width: 350px; // Alineado con los inputs
-    text-align: left; // Asegura alineación con el input
-  }
+.slogan {
+  color: #666;
+  margin: 10px 0 0;
+  font-size: 1rem;
+}
 
-  &__input {
-    width: 100%;
-    max-width: 350px; // Tamaño estándar fijo
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1rem;
-  }
+// Título del formulario
+.form-title {
+  font-size: 1.5rem;
+  color: $primary-color;
+  margin: 20px 0;
+  font-weight: 600;
+  text-align: center;
+}
 
-  &__button {
-    background: #007bff;
-    color: white;
-    padding: 0.9rem;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    max-width: 350px;
-    margin: 0 auto;
+// Formulario
+.register-form {
+  margin-top: 20px;
+}
 
-    &:hover {
-      background: #0056b3;
-    }
-  }
-
-  &__link {
+.form-group {
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  
+  label {
     display: block;
-    margin-top: 1rem;
+    margin-bottom: 8px;
+    font-weight: normal;
+    color: $text-color;
     font-size: 1rem;
-    color: #007bff;
-    text-decoration: none;
-
-    &:hover {
-      color: #0056b3;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    font-family: $font-family;
+    font-size: 1rem;
+    box-sizing: border-box;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
     }
+    
+    &::placeholder {
+      color: $placeholder-color;
+    }
+  }
+}
+
+// Password hint
+.password-hint {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: #666;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+// Contenedor específico para el campo de contraseña
+.password-container {
+  position: relative;
+  
+  input {
+    width: 100%;
+    padding-right: 35px; // Espacio para el botón de mostrar/ocultar
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $primary-color;
+    padding: 0;
+    font-size: 1rem;
+    outline: none;
+  }
+}
+
+// Términos y condiciones
+.terms-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  
+  input[type="checkbox"] {
+    margin-right: 10px;
+    margin-top: 3px;
+  }
+  
+  label {
+    color: $text-color;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  .terms-link {
+    color: $primary-color;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Botón de Registro
+.register-button {
+  width: 100%;
+  padding: 12px;
+  background-color: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  text-align: center;
+}
+
+// Divider
+.divider {
+  height: 1px;
+  background-color: #eee;
+  margin: 25px 0 20px;
+}
+
+// Login link container
+.login-link-container {
+  text-align: center;
+  
+  p {
+    margin: 0 0 8px;
+    color: $text-color;
+    font-size: 0.95rem;
+  }
+  
+  .login-link {
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: 600;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 576px) {
+  .register-card {
+    padding: 20px;
   }
 }

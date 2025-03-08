@@ -1,39 +1,165 @@
 <template>
-    <div class="register">
-      <div class="register__container">
-        <h1 class="register__title">Crear Cuenta</h1>
-        <form class="register__form">
-          <div class="register__field">
-            <label for="name" class="register__label">Nombre</label>
-            <input type="text" id="name" class="register__input" placeholder="Introduce tu nombre" required>
+  <div class="register-container">
+    <div class="register-card">
+      <div class="header">
+        <h1 class="logo">FarMed</h1>
+        <div class="logo-underline"></div>
+        <p class="slogan">Tu farmacia de confianza</p>
+      </div>
+      
+      <h2 class="form-title">Crear Cuenta</h2>
+      
+      <form @submit.prevent="handleRegister" class="register-form">
+        <div class="form-group">
+          <label for="name">Nombre completo</label>
+          <input 
+            type="text" 
+            id="name" 
+            v-model="formData.name" 
+            required 
+            placeholder="Tu nombre y apellidos"
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input 
+            type="email" 
+            id="email" 
+            v-model="formData.email" 
+            required 
+            placeholder="correo@ejemplo.com"
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Teléfono (opcional)</label>
+          <input 
+            type="tel" 
+            id="phone" 
+            v-model="formData.phone" 
+            placeholder="Tu número de teléfono"
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <div class="password-container">
+            <input 
+              :type="showPassword ? 'text' : 'password'" 
+              id="password" 
+              v-model="formData.password" 
+              required 
+              placeholder="Crea una contraseña"
+            />
+            <button 
+              type="button" 
+              class="toggle-password" 
+              @click="showPassword = !showPassword"
+            >
+              <span v-if="showPassword">🔒</span>
+              <span v-else>👁️</span>
+            </button>
           </div>
-          <div class="register__field">
-            <label for="surname" class="register__label">Apellidos</label>
-            <input type="text" id="surname" class="register__input" placeholder="Introduce tus apellidos" required>
+          <small class="password-hint">La contraseña debe tener al menos 6 caracteres</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="confirmPassword">Confirmar contraseña</label>
+          <div class="password-container">
+            <input 
+              :type="showConfirmPassword ? 'text' : 'password'" 
+              id="confirmPassword" 
+              v-model="formData.confirmPassword" 
+              required 
+              placeholder="Repite tu contraseña"
+            />
+            <button 
+              type="button" 
+              class="toggle-password" 
+              @click="showConfirmPassword = !showConfirmPassword"
+            >
+              <span v-if="showConfirmPassword">🔒</span>
+              <span v-else>👁️</span>
+            </button>
           </div>
-          <div class="register__field">
-            <label for="email" class="register__label">Correo Electrónico</label>
-            <input type="email" id="email" class="register__input" placeholder="Introduce tu correo" required>
-          </div>
-          <div class="register__field">
-            <label for="password" class="register__label">Contraseña</label>
-            <input type="password" id="password" class="register__input" placeholder="Introduce tu contraseña" required>
-          </div>
-          <div class="register__field">
-            <label for="confirm-password" class="register__label">Confirmar Contraseña</label>
-            <input type="password" id="confirm-password" class="register__input" placeholder="Repite tu contraseña" required>
-          </div>
-          <button type="submit" class="register__button">Registrarse</button>
-          <router-link to="/login" class="register__link">¿Ya tienes cuenta? Inicia sesión</router-link>
-        </form>
+        </div>
+        
+        <div class="terms-container">
+          <input type="checkbox" id="terms" v-model="formData.termsAccepted" required />
+          <label for="terms">
+            Acepto los <a href="#" class="terms-link">términos y condiciones</a> y la <a href="#" class="terms-link">política de privacidad</a>
+          </label>
+        </div>
+        
+        <button type="submit" class="register-button">
+          Crear Cuenta
+        </button>
+      </form>
+      
+      <div class="divider"></div>
+      
+      <div class="login-link-container">
+        <p>¿Ya tienes una cuenta?</p>
+        <router-link to="/login" class="login-link">Inicia sesión aquí</router-link>
       </div>
     </div>
-  </template>
-  
-  <script setup lang="ts">
-  </script>
-  
-  <style scoped lang="scss">
-  @use '../assets/styles/pages/register.scss' as *;
-  </style>
-  
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Register',
+  data() {
+    return {
+      formData: {
+        name: '',
+        email: '',
+        phone: '',
+        password: '',
+        confirmPassword: '',
+        termsAccepted: false
+      },
+      showPassword: false,
+      showConfirmPassword: false,
+      errorMessage: ''
+    };
+  },
+  methods: {
+    validateForm() {
+      if (this.formData.password.length < 6) {
+        alert('La contraseña debe tener al menos 6 caracteres.');
+        return false;
+      }
+      
+      if (this.formData.password !== this.formData.confirmPassword) {
+        alert('Las contraseñas no coinciden.');
+        return false;
+      }
+      
+      if (!this.formData.termsAccepted) {
+        alert('Debes aceptar los términos y condiciones.');
+        return false;
+      }
+      
+      return true;
+    },
+    handleRegister() {
+      if (!this.validateForm()) {
+        return;
+      }
+      
+      // En un caso real, aquí enviarías los datos al servidor
+      console.log('Registro exitoso:', this.formData);
+      
+      // Redirigir al login o mostrar mensaje de éxito
+      alert('Cuenta creada con éxito. Por favor, inicia sesión.');
+      this.$router.push('/login');
+    }
+  }
+};
+</script>
+
+<style lang="scss">
+@import '@/assets/styles/pages/register.scss';
+</style>
