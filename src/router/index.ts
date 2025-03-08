@@ -10,7 +10,7 @@ import Meds from '../views/Meds.vue';
 import Oportunidades from '../views/Oportunidades.vue';
 import Carrito from '../views/Carrito.vue';
 import Tienda from '../views/Tienda.vue';
-import Checkout from '@/views/Checkout.vue';
+import Checkout from '../views/Checkout.vue';
 
 
 const routes = [

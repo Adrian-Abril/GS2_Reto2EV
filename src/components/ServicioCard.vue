@@ -25,7 +25,6 @@
       <div class="servicio-contenido">
         <h3>{{ servicio.titulo }}</h3>
         <p>{{ servicio.descripcion }}</p>
-        <a href="#" class="servicio-enlace">Saber más</a>
       </div>
     </div>
   </template>
