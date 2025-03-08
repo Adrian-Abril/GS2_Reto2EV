@@ -8,10 +8,13 @@ import Novedades from '../views/Novedades.vue';
 import Blog from '../views/Blog.vue'; 
 import Meds from '../views/Meds.vue';
 import Oportunidades from '../views/Oportunidades.vue';
+import Carrito from '../views/Carrito.vue';
+import Tienda from '../views/Tienda.vue';
+import Checkout from '@/views/Checkout.vue';
 
 
 const routes = [
-  { path: '/', component: Home, meta: { public: true } },
+  { path: '/home', component: Home, meta: { public: true } },
   { path: '/login', component: Login, meta: { public: true } },
   { path: '/pedidos', component: Pedidos, meta: { requiresAuth: true } },
   { path: '/perfil', component: Perfil, meta: { requiresAuth: true } },
@@ -20,7 +23,9 @@ const routes = [
   { path: '/medicamentos', component: Meds, meta: { public: true } },
   { path: '/novedades', component: Novedades, meta: { public: true } },
   { path: '/oportunidades', component: Oportunidades, meta: { public: true } },
-
+  { path: '/carrito', component: Carrito, meta: { public: true } },
+  { path: '/tienda', component: Tienda, meta: { public: true } },
+  { path: '/checkout', component: Checkout, meta: { public: true } },
 ];
 
 const router = createRouter({

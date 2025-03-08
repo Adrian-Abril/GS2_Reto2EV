@@ -1,189 +1,332 @@
-@use "../variables" as *;
-@use "../mixins" as *;
+// Mobile-first approach
 
 .header {
-  background-color: #ffffff;
-  padding: 15px 0;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  position: relative;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
   z-index: 1000;
-
-  .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+  
+  .header-container {
+    padding: 0 1rem;
+    height: 80px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
   }
-
-  .logo {
+  
+  // Logo y nombre de la marca
+  .brand {
     display: flex;
     align-items: center;
-    gap: 10px;
-
-    &__image {
-      width: 90px;
-      height: auto;
+    
+    .logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
     }
-
-    h1 {
-      font-size: 22px;
-      font-weight: bold;
-      color: #333;
+    
+    .logo {
+      width: 70px;
+      height: 70px;
+      margin-right: 0.75rem;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        -ms-interpolation-mode: nearest-neighbor;
+      }
+    }
+    
+    .brand-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #2e7d32;
       margin: 0;
-    }
-
-    span {
-      font-size: 14px;
-      color: #777;
+      text-transform: uppercase;
     }
   }
-
-  /* MENÚ HAMBURGUESA - Mobile First */
-  .nav {
+  
+  // Navegación principal
+  .main-nav {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-    transform: translateY(-100%);
-    opacity: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    max-width: 100%;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
     visibility: hidden;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-
-    ul {
+    margin: 0;
+    
+    &.active {
+      transform: translateX(0);
+      visibility: visible;
+    }
+    
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding-top: 80px;
       list-style: none;
-      padding: 0;
+      padding-left: 0;
       margin: 0;
-      text-align: center;
-
-      li {
-        margin: 15px 0;
-
-        a {
-          text-decoration: none;
-          font-size: 22px;
+    }
+    
+    .nav-item {
+      margin: 0.75rem 0;
+    }
+    
+    .nav-link {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+      
+      &:hover {
+        color: #2e7d32;
+      }
+      
+      &.router-link-active {
+        color: #2e7d32;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -5px;
+          height: 3px;
+          background-color: #2e7d32;
+          border-radius: 1.5px;
+        }
+      }
+    }
+  }
+  
+  // Acciones del usuario (login y carrito)
+  .user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    
+    .user-action {
+      display: flex;
+      
+      .action-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: #666;
+        position: relative;
+        
+        &:hover {
+          color: #2e7d32;
+        }
+        
+        .action-icon {
+          width: 24px;
+          height: 24px;
+          position: relative;
+          margin-bottom: 4px;
+          
+          &.user-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='12' cy='7' r='4'%3E%3C/circle%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+          
+          &.cart-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='21' r='1'%3E%3C/circle%3E%3Ccircle cx='20' cy='21' r='1'%3E%3C/circle%3E%3Cpath d='M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6'%3E%3C/path%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+        }
+        
+        .cart-container {
+          position: relative;
+        }
+        
+        .cart-badge {
+          position: absolute;
+          top: -6px;
+          right: -6px;
+          background-color: #e53935;
+          color: white;
+          border-radius: 50%;
+          width: 18px;
+          height: 18px;
+          font-size: 0.75rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           font-weight: bold;
-          color: #333;
-          transition: color 0.3s ease;
+        }
+        
+        .action-text {
+          font-size: 0.75rem;
+          font-weight: 500;
+          color: #666;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+  
+  // Botón de menú móvil
+  .mobile-menu-toggle {
+    width: 30px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1010;
+    
+    span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background-color: #333;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+  }
+}
 
-          &:hover {
-            color: #007bff;
+// Tablet
+@media (min-width: 481px) {
+  .header {
+    .header-container {
+      padding: 0 1.5rem;
+      height: 85px;
+    }
+    
+    .brand {
+      .logo {
+        width: 75px;
+        height: 75px;
+        margin-right: 1rem;
+      }
+      
+      .brand-name {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+// Pantallas medianas
+@media (min-width: 769px) {
+  .header {
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 90px;
+    }
+    
+    .brand {
+      .logo {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .brand-name {
+        font-size: 2.2rem;
+      }
+    }
+    
+    .mobile-menu-toggle {
+      display: none;
+    }
+    
+    .main-nav {
+      position: static;
+      transform: none;
+      visibility: visible;
+      flex: 1;
+      max-width: 700px;
+      margin: 0 1rem;
+      
+      .nav-list {
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 0;
+        height: auto;
+      }
+      
+      .nav-item {
+        margin: 0 0.3rem;
+      }
+      
+      .nav-link {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.5rem;
+      }
+    }
+  }
+}
+
+// Pantallas grandes
+@media (min-width: 1025px) {
+  .header {
+    .main-nav {
+      .nav-item {
+        margin: 0 0.5rem;
+      }
+      
+      .nav-link {
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+      }
+    }
+    
+    .user-actions {
+      .user-action {
+        .action-link {
+          .action-text {
+            font-size: 0.85rem;
           }
         }
       }
     }
-
-    &--open {
-      transform: translateY(0);
-      opacity: 1;
-      visibility: visible;
-    }
   }
+}
 
-  /* BOTÓN HAMBURGUESA (REDUCIDO Y SEPARADO) */
-  .menu-toggle {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px; /* Más pequeño */
-    height: 22px; /* Más bajo */
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-    z-index: 1100;
-    position: relative;
-    margin-right: 20px; /* MÁS SEPARACIÓN */
-
-    div {
-      width: 100%;
-      height: 3px; /* Más delgado */
-      background-color: #333;
-      border-radius: 2px;
-      transition: all 0.3s ease-in-out;
+// Pantallas extra grandes
+@media (min-width: 1441px) {
+  .header {
+    .header-container {
+      max-width: 1400px;
     }
-
-    &.open {
-      div:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
+    
+    .brand {
+      .logo {
+        width: 90px;
+        height: 90px;
       }
-
-      div:nth-child(2) {
-        opacity: 0;
-      }
-
-      div:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-      }
-    }
-  }
-
-  /* ACCIONES (LOGIN Y CARRITO) */
-  .actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-
-    .login {
-      background-color: #007bff;
-      color: white;
-      font-size: 14px;
-      padding: 10px 15px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-
-      &:hover {
-        background-color: #0056b3;
-      }
-    }
-
-    .cart {
-      width: 30px;
-      height: 30px;
-      background-size: cover;
-      border: none;
-      cursor: pointer;
-    }
-  }
-
-  /* ESTILOS PARA PANTALLAS GRANDES */
-  @media (min-width: 768px) {
-    .menu-toggle {
-      display: none;
-    }
-
-    .nav {
-      position: relative;
-      top: auto;
-      left: auto;
-      width: auto;
-      height: auto;
-      background: none;
-      display: flex;
-      flex-direction: row;
-      opacity: 1;
-      visibility: visible;
-      transform: none;
-
-      ul {
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-
-        li {
-          margin: 0;
-        }
+      
+      .brand-name {
+        font-size: 2.4rem;
       }
     }
   }
