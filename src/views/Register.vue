@@ -1,7 +1,7 @@
 <template>
   <div class="register-container">
     <div class="register-card">
-      <div class="header">
+      <div class="logo-container">
         <h1 class="logo">FarMed</h1>
         <div class="logo-underline"></div>
         <p class="slogan">Tu farmacia de confianza</p>
@@ -44,45 +44,25 @@
         
         <div class="form-group">
           <label for="password">Contraseña</label>
-          <div class="password-container">
-            <input 
-              :type="showPassword ? 'text' : 'password'" 
-              id="password" 
-              v-model="formData.password" 
-              required 
-              placeholder="Crea una contraseña"
-            />
-            <button 
-              type="button" 
-              class="toggle-password" 
-              @click="showPassword = !showPassword"
-            >
-              <span v-if="showPassword">🔒</span>
-              <span v-else>👁️</span>
-            </button>
-          </div>
-          <small class="password-hint">La contraseña debe tener al menos 6 caracteres</small>
+          <input 
+            :type="showPassword ? 'text' : 'password'" 
+            id="password" 
+            v-model="formData.password" 
+            required 
+            placeholder="Crea una contraseña"
+          />
+          <p class="password-hint">La contraseña debe tener al menos 6 caracteres</p>
         </div>
         
         <div class="form-group">
           <label for="confirmPassword">Confirmar contraseña</label>
-          <div class="password-container">
-            <input 
-              :type="showConfirmPassword ? 'text' : 'password'" 
-              id="confirmPassword" 
-              v-model="formData.confirmPassword" 
-              required 
-              placeholder="Repite tu contraseña"
-            />
-            <button 
-              type="button" 
-              class="toggle-password" 
-              @click="showConfirmPassword = !showConfirmPassword"
-            >
-              <span v-if="showConfirmPassword">🔒</span>
-              <span v-else>👁️</span>
-            </button>
-          </div>
+          <input 
+            :type="showConfirmPassword ? 'text' : 'password'" 
+            id="confirmPassword" 
+            v-model="formData.confirmPassword" 
+            required 
+            placeholder="Repite tu contraseña"
+          />
         </div>
         
         <div class="terms-container">
