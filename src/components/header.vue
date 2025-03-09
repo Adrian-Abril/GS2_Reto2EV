@@ -15,16 +15,13 @@
       <nav class="main-nav" :class="{ 'active': menuActive }">
         <ul class="nav-list">
           <li class="nav-item">
-            <router-link to="/home" class="nav-link">Home</router-link>
+            <router-link to="/home" class="nav-link">Inicio</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/tienda" class="nav-link">Medicamentos</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/novedades" class="nav-link">Novedades</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/oportunidades" class="nav-link">Oportunidades</router-link>
+            <router-link to="/oportunidades" class="nav-link">Trabaja Con Nosotros</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/blog" class="nav-link">Sobre nosotros</router-link>
