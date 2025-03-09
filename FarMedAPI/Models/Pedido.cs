@@ -1,13 +1,32 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace FarMedAPI.Models
 {
-    public class Pedido
+    public class DetallePedido
     {
-        public int Id_Pedido { get; set; }
-        public int Id_Cliente { get; set; }
-        public int Id_Farmacia { get; set; }
-        public DateTime Fecha_Pedido { get; set; }
-        public string Estado { get; set; } // Pendiente, Enviado, Entregado
-        public decimal Total { get; set; }
-        public string Dirección_Entrega { get; set; }
+        [Key, Column(Order = 0)]
+        public int PedidoId { get; set; }
+        
+        [Key, Column(Order = 1)]
+        public int ProductoId { get; set; }
+        
+        [Required]
+        public int Cantidad { get; set; }
+        
+        [Required]
+        [Column(TypeName = "decimal(10, 2)")]
+        public decimal PrecioUnitario { get; set; }
+        
+        [Required]
+        [Column(TypeName = "decimal(10, 2)")]
+        public decimal Subtotal { get; set; }
+        
+        // Propiedades de navegación
+        [ForeignKey("PedidoId")]
+        public virtual Pedido? Pedido { get; set; }
+        
+        [ForeignKey("ProductoId")]
+        public virtual Producto? Producto { get; set; }
     }
 }

@@ -1,8 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
-using FarMedAPI.Service;
-using FarMedAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FarMedAPI.Models;
+using FarMedAPI.Repository;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FarMedAPI.Controllers
 {
@@ -10,73 +11,66 @@ namespace FarMedAPI.Controllers
     [ApiController]
     public class PedidoController : ControllerBase
     {
-        private readonly IPedidoService _pedidoService;
+        private readonly PedidoRepository _pedidoRepository;
 
-        public PedidoController(IPedidoService pedidoService)
+        public PedidoController(PedidoRepository pedidoRepository)
         {
-            _pedidoService = pedidoService;
+            _pedidoRepository = pedidoRepository;
         }
 
-        // Obtener todos los pedidos
+        // GET: api/Pedido
         [HttpGet]
-        public async Task<ActionResult<List<Pedido>>> GetPedidos()
+        public async Task<ActionResult<IEnumerable<Pedido>>> GetPedidos()
         {
-            var pedidos = await _pedidoService.GetAllAsync();
+            var pedidos = await _pedidoRepository.GetAllPedidos();
             return Ok(pedidos);
         }
 
-        // Obtener un pedido por ID
+        // GET: api/Pedido/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Pedido>> GetPedido(int id)
         {
-            var pedido = await _pedidoService.GetByIdAsync(id);
+            var pedido = await _pedidoRepository.GetPedidoById(id);
+
             if (pedido == null)
             {
                 return NotFound();
             }
-            return Ok(pedido);
+
+            return pedido;
         }
 
-        // Crear un nuevo pedido
+        // POST: api/Pedido
         [HttpPost]
         public async Task<ActionResult<Pedido>> CreatePedido(Pedido pedido)
         {
-            await _pedidoService.AddAsync(pedido);
-            return CreatedAtAction(nameof(GetPedido), new { id = pedido.Id_Pedido }, pedido);
+            var result = await _pedidoRepository.CreatePedido(pedido);
+            return CreatedAtAction(nameof(GetPedido), new { id = result.Id_Pedido }, result);
         }
 
-        // Actualizar un pedido existente
+        // PUT: api/Pedido/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePedido(int id, Pedido updatedPedido)
+        public async Task<IActionResult> UpdatePedido(int id, Pedido pedido)
         {
-            var existingPedido = await _pedidoService.GetByIdAsync(id);
-            if (existingPedido == null)
+            if (id != pedido.Id_Pedido)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            // Actualizar datos del pedido
-            existingPedido.Id_Cliente = updatedPedido.Id_Cliente;
-            existingPedido.Id_Farmacia = updatedPedido.Id_Farmacia;
-            existingPedido.Fecha_Pedido = updatedPedido.Fecha_Pedido;
-            existingPedido.Estado = updatedPedido.Estado;
-            existingPedido.Total = updatedPedido.Total;
-            existingPedido.Dirección_Entrega = updatedPedido.Dirección_Entrega;
-
-            await _pedidoService.UpdateAsync(existingPedido);
-            return NoContent();
+            var result = await _pedidoRepository.UpdatePedido(pedido);
+            return Ok(result);
         }
 
-        // Eliminar un pedido
+        // DELETE: api/Pedido/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePedido(int id)
         {
-            var pedido = await _pedidoService.GetByIdAsync(id);
-            if (pedido == null)
+            var result = await _pedidoRepository.DeletePedido(id);
+            if (!result)
             {
                 return NotFound();
             }
-            await _pedidoService.DeleteAsync(id);
+
             return NoContent();
         }
     }

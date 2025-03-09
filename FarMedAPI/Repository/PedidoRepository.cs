@@ -1,63 +1,73 @@
-using FarMedAPI.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using FarMedAPI.Data;
 using FarMedAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace FarMedAPI.Repositories
+namespace FarMedAPI.Repository
 {
-    public class PedidoRepository : IPedidoRepository
+    public class PedidoRepository
     {
-        private readonly List<Pedido> _pedidos;
+        private readonly FarmaciaContext _context;
 
-        public PedidoRepository()
+        public PedidoRepository(FarmaciaContext context)
         {
-            _pedidos = new List<Pedido>
-            {
-                new Pedido { Id_Cliente = 1, Id_Farmacia = 1, Fecha_Pedido = DateTime.Now, Estado = "list", Total = 23, Dirección_Entrega = "calle inventada",},
-                new Pedido { Id_Cliente = 2, Id_Farmacia = 2, Fecha_Pedido = DateTime.Now, Estado = "list", Total = 24, Dirección_Entrega = "calle inventada",}
-            };
+            _context = context;
         }
 
-        public Task<List<Pedido>> GetAllAsync()
+        public async Task<IEnumerable<Pedido>> GetAllPedidos()
         {
-            return Task.FromResult(_pedidos);
+            return await _context.Pedidos
+                .Include(p => p.Cliente)
+                .Include(p => p.Empleado)
+                .Include(p => p.Farmacia)
+                .ToListAsync();
         }
 
-        public Task<Pedido> GetByIdAsync(int id)
+        public async Task<Pedido> GetPedidoById(int id)
         {
-            var pedido = _pedidos.FirstOrDefault(c => c.Id_Pedido == id);
-            return Task.FromResult(pedido);
+            return await _context.Pedidos
+                .Include(p => p.Cliente)
+                .Include(p => p.Empleado)
+                .Include(p => p.Farmacia)
+                .FirstOrDefaultAsync(p => p.Id_Pedido == id);
         }
 
-        public Task AddAsync(Pedido pedido)
+        public async Task<IEnumerable<Pedido>> GetPedidosByCliente(int clienteId)
         {
-            pedido.Id_Cliente = _pedidos.Count + 1;
-            _pedidos.Add(pedido);
-            return Task.CompletedTask;
+            return await _context.Pedidos
+                .Where(p => p.Id_Cliente == clienteId)
+                .Include(p => p.Cliente)
+                .Include(p => p.Empleado)
+                .Include(p => p.Farmacia)
+                .ToListAsync();
         }
 
-        public Task UpdateAsync(Pedido pedido)
+        public async Task<Pedido> CreatePedido(Pedido pedido)
         {
-            var existingPedido = _pedidos.FirstOrDefault(c => c.Id_Pedido == pedido.Id_Pedido);
-            if (existingPedido != null)
-            {
-                existingPedido.Id_Cliente = pedido.Id_Cliente;
-                existingPedido.Id_Farmacia = pedido.Id_Farmacia;
-                existingPedido.Fecha_Pedido = pedido.Fecha_Pedido;
-                existingPedido.Estado = pedido.Estado;
-                existingPedido.Total = pedido.Total;
-                existingPedido.Dirección_Entrega = pedido.Dirección_Entrega;
-            }
-            return Task.CompletedTask;
+            _context.Pedidos.Add(pedido);
+            await _context.SaveChangesAsync();
+            return pedido;
         }
 
-        public Task DeleteAsync(int id)
+        public async Task<Pedido> UpdatePedido(Pedido pedido)
         {
-            var pedido = _pedidos.FirstOrDefault(c => c.Id_Pedido == id);
-            if (pedido != null)
-            {
-                _pedidos.Remove(pedido);
-            }
-            return Task.CompletedTask;
+            _context.Entry(pedido).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return pedido;
+        }
+
+        public async Task<bool> DeletePedido(int id)
+        {
+            var pedido = await _context.Pedidos.FindAsync(id);
+            if (pedido == null)
+                return false;
+
+            _context.Pedidos.Remove(pedido);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }
-

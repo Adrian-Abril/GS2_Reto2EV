@@ -1,40 +1,61 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using FarMedAPI.Data;
 using FarMedAPI.Models;
-using FarMedAPI.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace FarMedAPI.Service
 {
     public class PedidoService : IPedidoService
     {
-        private readonly IPedidoRepository _pedidoRepository;
+        private readonly FarmaciaContext _context;
 
-        public PedidoService(IPedidoRepository pedidoRepository)
+        public PedidoService(FarmaciaContext context)
         {
-            _pedidoRepository = pedidoRepository;
+            _context = context;
         }
 
-        public async Task<List<Pedido>> GetAllAsync()
+        public async Task<IEnumerable<Pedido>> GetAllPedidos()
         {
-            return await _pedidoRepository.GetAllAsync();
+            return await _context.Pedidos.ToListAsync();
         }
 
-        public async Task<Cliente> GetByIdAsync(int id)
+        public async Task<Pedido> GetPedidoById(int id)
         {
-            return await _clienteRepository.GetByIdAsync(id);
+            return await _context.Pedidos.FindAsync(id);
         }
 
-        public async Task AddAsync(Cliente cliente)
+        public async Task<IEnumerable<Pedido>> GetPedidosByCliente(int clienteId)
         {
-            await _clienteRepository.AddAsync(cliente);
+            return await _context.Pedidos
+                .Where(p => p.Id_Cliente == clienteId)
+                .ToListAsync();
         }
 
-        public async Task UpdateAsync(Cliente cliente)
+        public async Task<Pedido> AddPedido(Pedido pedido)
         {
-            await _clienteRepository.UpdateAsync(cliente);
+            _context.Pedidos.Add(pedido);
+            await _context.SaveChangesAsync();
+            return pedido;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<Pedido> UpdatePedido(Pedido pedido)
         {
-            await _clienteRepository.DeleteAsync(id);
+            _context.Entry(pedido).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return pedido;
+        }
+
+        public async Task<bool> DeletePedido(int id)
+        {
+            var pedido = await _context.Pedidos.FindAsync(id);
+            if (pedido == null)
+                return false;
+
+            _context.Pedidos.Remove(pedido);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

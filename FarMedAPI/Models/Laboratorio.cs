@@ -1,22 +1,20 @@
-// Models/Farmacia.cs
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FarMedAPI.Models
 {
-    public class Farmacia
+    public class Laboratorio
     {
         [Key]
-        public int FarmaciaId { get; set; }
+        public int LaboratorioId { get; set; }
         
         [Required]
         [StringLength(100)]
         public string Nombre { get; set; } = null!;
         
-        [Required]
         [StringLength(255)]
-        public string Direccion { get; set; } = null!;
+        public string? Direccion { get; set; }
         
         [StringLength(20)]
         public string? Telefono { get; set; }
@@ -25,11 +23,7 @@ namespace FarMedAPI.Models
         [EmailAddress]
         public string? Email { get; set; }
         
-        [StringLength(100)]
-        public string? HorarioAtencion { get; set; }
-        
         // Propiedades de navegación
-        public virtual ICollection<Empleado> Empleados { get; set; } = new List<Empleado>();
-        public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
+        public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
     }
 }

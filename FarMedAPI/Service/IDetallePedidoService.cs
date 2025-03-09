@@ -1,13 +1,17 @@
+// Service/IDetallePedidoService.cs
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using FarMedAPI.Models;
 
 namespace FarMedAPI.Service
 {
     public interface IDetallePedidoService
     {
-        Task<List<DetallePedido>> GetAllAsync();
-        Task<DetallePedido> GetByIdAsync(int id);
-        Task AddAsync(DetallePedido detallePedido);
-        Task UpdateAsync(DetallePedido detallePedido);
-        Task DeleteAsync(int id);
+        Task<IEnumerable<DetallePedido>> GetAllDetallesPedidoAsync();
+        Task<DetallePedido> GetDetallePedidoByIdAsync(int pedidoId, int productoId);
+        Task<IEnumerable<DetallePedido>> GetDetallesByPedidoIdAsync(int pedidoId);
+        Task<DetallePedido> CreateDetallePedidoAsync(DetallePedido detallePedido);
+        Task<DetallePedido> UpdateDetallePedidoAsync(int pedidoId, int productoId, DetallePedido detallePedido);
+        Task<bool> DeleteDetallePedidoAsync(int pedidoId, int productoId);
     }
 }

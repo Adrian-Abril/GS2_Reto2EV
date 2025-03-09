@@ -1,13 +1,17 @@
+// Repository/IFarmaciaRepository.cs
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using FarMedAPI.Models;
 
 namespace FarMedAPI.Repository
 {
     public interface IFarmaciaRepository
     {
-        Task<List<Farmacia>> GetAllAsync();
-        Task<Farmacia> GetByIdAsync(int id);
-        Task AddAsync(Farmacia farmacia);
-        Task UpdateAsync(Farmacia farmacia);
-        Task DeleteAsync(int id);
+        Task<IEnumerable<Farmacia>> GetAllFarmaciasAsync();
+        Task<Farmacia> GetFarmaciaByIdAsync(int id);
+        Task<Farmacia> CreateFarmaciaAsync(Farmacia farmacia);
+        Task<Farmacia> UpdateFarmaciaAsync(Farmacia farmacia);
+        Task<bool> DeleteFarmaciaAsync(int id);
+        Task<bool> FarmaciaExistsAsync(int id);
     }
 }

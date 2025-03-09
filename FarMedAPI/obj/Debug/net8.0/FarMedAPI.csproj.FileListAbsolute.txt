@@ -207,6 +207,3 @@ C:\Users\USUARIO\Desktop\GS2_Reto2EV\FarMedAPI\obj\Debug\net8.0\FarMedAPI.csproj
 C:\Users\USUARIO\Desktop\GS2_Reto2EV\FarMedAPI\obj\Debug\net8.0\FarMedAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\USUARIO\Desktop\GS2_Reto2EV\FarMedAPI\obj\Debug\net8.0\FarMedAPI.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\USUARIO\Desktop\GS2_Reto2EV\FarMedAPI\obj\Debug\net8.0\FarMedAPI.sourcelink.json
-C:\Users\USUARIO\Desktop\GS2_Reto2EV\FarMedAPI\obj\Debug\net8.0\FarMedAPI.dll
-C:\Users\USUARIO\Desktop\GS2_Reto2EV\FarMedAPI\obj\Debug\net8.0\refint\FarMedAPI.dll
-C:\Users\USUARIO\Desktop\GS2_Reto2EV\FarMedAPI\obj\Debug\net8.0\FarMedAPI.pdb
