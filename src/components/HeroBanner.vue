@@ -7,7 +7,7 @@
           <p>Disponemos de una amplia gama de productos farmacéuticos, consejos profesionales y servicios personalizados para cuidar tu bienestar.</p>
           <div class="hero-buttons">
             <router-link to="/tienda" class="btn btn-primary">Ver Productos</router-link>
-            <router-link to="/contacto" class="btn btn-secondary">Contactar</router-link>
+            <router-link to="/blog" class="btn btn-secondary">Contactar</router-link>
           </div>
         </div>
         <div class="hero-image">
