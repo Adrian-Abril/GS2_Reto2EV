@@ -10,6 +10,7 @@ import Oportunidades from '../views/Oportunidades.vue';
 import Carrito from '../views/Carrito.vue';
 import Tienda from '../views/Tienda.vue';
 import Checkout from '../views/Checkout.vue';
+import PrivateZone from '../views/PrivateZone.vue';
 
 
 const routes = [
@@ -24,6 +25,7 @@ const routes = [
   { path: '/carrito', component: Carrito, meta: { public: true } },
   { path: '/tienda', component: Tienda, meta: { public: true } },
   { path: '/checkout', component: Checkout, meta: { public: true } },
+  { path: '/privatezone', component: PrivateZone, meta: { public: true } },
 ];
 
 const router = createRouter({
