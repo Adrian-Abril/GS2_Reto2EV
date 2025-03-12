@@ -1,63 +1,61 @@
-using FarMedAPI.Data;
-using FarMedAPI.Repository;
-using FarMedAPI.Service;
+using FarMedAPI.Repositories;
+using FarMedAPI.Services;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Agregar servicios al contenedor
+// 📌 Cargar configuración desde appsettings.json
+var configuration = builder.Configuration;
+string connectionString = configuration.GetConnectionString("DefaultConnection");
+
+// 📌 Configurar servicios
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Configurar la conexión a la base de datos
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<FarmaciaContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+// 📌 Configuración de la base de datos PostgreSQL
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
-// Registrar los repositorios
-builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
-builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
-builder.Services.AddScoped<IDetallePedidoRepository, DetallePedidoRepository>();
-builder.Services.AddScoped<IEmpleadoRepository, EmpleadoRepository>();
-builder.Services.AddScoped<IEntregaRepository, EntregaRepository>();
-builder.Services.AddScoped<IFarmaciaRepository, FarmaciaRepository>();
-builder.Services.AddScoped<ILaboratorioRepository, LaboratorioRepository>();
-builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
+// 📌 Inyección de dependencias para Repositorios
 builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+builder.Services.AddScoped<ILaboratorioRepository, LaboratorioRepository>();
 
-// Registrar los servicios
-builder.Services.AddScoped<ICategoriaService, CategoriaService>();
-builder.Services.AddScoped<IClienteService, ClienteService>();
-builder.Services.AddScoped<IDetallePedidoService, DetallePedidoService>();
-builder.Services.AddScoped<IEmpleadoService, EmpleadoService>();
-builder.Services.AddScoped<IEntregaService, EntregaService>();
-builder.Services.AddScoped<IFarmaciaService, FarmaciaService>();
-builder.Services.AddScoped<ILaboratorioService, LaboratorioService>();
-builder.Services.AddScoped<IPedidoService, PedidoService>();
+// 📌 Inyección de dependencias para Servicios
 builder.Services.AddScoped<IProductoService, ProductoService>();
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddScoped<ILaboratorioService, LaboratorioService>();
 
-// Configurar CORS si es necesario
+// 📌 Habilitar CORS (Permitir peticiones de cualquier origen)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
-        builder => builder.AllowAnyOrigin()
-                          .AllowAnyMethod()
-                          .AllowAnyHeader());
+        policy => policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
 });
 
 var app = builder.Build();
 
-// Configurar el pipeline de solicitud HTTP
+// 📌 Configurar middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.UseCors("AllowAll");
+app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
+// 📌 Ejecutar la aplicación
 app.Run();

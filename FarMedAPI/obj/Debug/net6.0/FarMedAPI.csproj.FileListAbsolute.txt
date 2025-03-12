@@ -1,0 +1,8 @@
+D:\RETO2º\GS2_Reto2EV\FarMedAPI\obj\Debug\net6.0\FarMedAPI.csproj.AssemblyReference.cache
+D:\RETO2º\GS2_Reto2EV\FarMedAPI\obj\Debug\net6.0\FarMedAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\RETO2º\GS2_Reto2EV\FarMedAPI\obj\Debug\net6.0\FarMedAPI.AssemblyInfoInputs.cache
+D:\RETO2º\GS2_Reto2EV\FarMedAPI\obj\Debug\net6.0\FarMedAPI.AssemblyInfo.cs
+D:\RETO2º\GS2_Reto2EV\FarMedAPI\obj\Debug\net6.0\FarMedAPI.csproj.CoreCompileInputs.cache
+D:\RETO2º\GS2_Reto2EV\FarMedAPI\obj\Debug\net6.0\FarMedAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\RETO2º\GS2_Reto2EV\FarMedAPI\obj\Debug\net6.0\FarMedAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\RETO2º\GS2_Reto2EV\FarMedAPI\obj\Debug\net6.0\FarMedAPI.sourcelink.json
