@@ -63,6 +63,9 @@
           <p>¿No tienes una cuenta?</p>
           <router-link to="/register" class="register-link">Regístrate aquí</router-link>
         </div>
+        <div class="form-footer">
+        <router-link to="/privatezone" class="register-link">ZonaPrivada</router-link>
+      </div>
       </div>
       
       <UserAccount v-else @logout="handleLogout" :user="user" />
