@@ -1,6 +1,4 @@
-// Models/Producto.cs
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,14 +7,14 @@ namespace FarMedAPI.Models
     public class Producto
     {
         [Key]
-        public int ProductoId { get; set; }
+        public int Id_Producto { get; set; }
         
         [Required]
         [StringLength(100)]
-        public string Nombre { get; set; } = null!;
+        public string Nombre { get; set; }
         
-        [StringLength(255)]
-        public string? Descripcion { get; set; }
+        [StringLength(500)]
+        public string Descripcion { get; set; }
         
         [Required]
         [Column(TypeName = "decimal(10, 2)")]
@@ -25,19 +23,21 @@ namespace FarMedAPI.Models
         [Required]
         public int Stock { get; set; }
         
-        public int? CategoriaId { get; set; }
+        public bool Disponible { get; set; }
         
-        public int? LaboratorioId { get; set; }
+        [Required]
+        public DateTime Fecha_Creacion { get; set; }
         
-        public bool RequiereReceta { get; set; }
+        // Relaciones
+        [Required]
+        public int Id_Categoria { get; set; }
         
-        // Propiedades de navegación
-        [ForeignKey("CategoriaId")]
-        public virtual Categoria? Categoria { get; set; }
+        [ForeignKey("Id_Categoria")]
+        public virtual Categoria Categoria { get; set; }
         
-        [ForeignKey("LaboratorioId")]
-        public virtual Laboratorio? Laboratorio { get; set; }
+        public int? Id_Laboratorio { get; set; }
         
-        public virtual ICollection<DetallePedido> DetallesPedidos { get; set; } = new List<DetallePedido>();
+        [ForeignKey("Id_Laboratorio")]
+        public virtual Laboratorio Laboratorio { get; set; }
     }
 }

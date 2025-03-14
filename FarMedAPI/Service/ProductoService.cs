@@ -1,69 +1,88 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using FarMedAPI.Data;
 using FarMedAPI.Models;
-using Microsoft.EntityFrameworkCore;
+using FarMedAPI.Repository;
 
 namespace FarMedAPI.Service
 {
     public class ProductoService : IProductoService
     {
-        private readonly FarmaciaContext _context;
+        private readonly IProductoRepository _productoRepository;
 
-        public ProductoService(FarmaciaContext context)
+        public ProductoService(IProductoRepository productoRepository)
         {
-            _context = context;
+            _productoRepository = productoRepository;
         }
 
-        public async Task<IEnumerable<Producto>> GetAllProductos()
+        public async Task<List<Producto>> GetAllProductosAsync()
         {
-            return await _context.Productos
-                .Include(p => p.Categoria)
-                .Include(p => p.Laboratorio)
-                .ToListAsync();
+            return await _productoRepository.GetAllAsync();
         }
 
-        public async Task<Producto> GetProductoById(int id)
+        public async Task<Producto> GetProductoByIdAsync(int id)
         {
-            return await _context.Productos
-                .Include(p => p.Categoria)
-                .Include(p => p.Laboratorio)
-                .FirstOrDefaultAsync(p => p.IdProducto == id);
+            return await _productoRepository.GetByIdAsync(id);
         }
 
-        public async Task<IEnumerable<Producto>> GetProductosByCategoria(int categoriaId)
+        public async Task<List<Producto>> GetProductosByCategoriaAsync(int categoriaId)
         {
-            return await _context.Productos
-                .Where(p => p.IdCategoria == categoriaId)
-                .Include(p => p.Categoria)
-                .Include(p => p.Laboratorio)
-                .ToListAsync();
+            return await _productoRepository.GetByCategoriaAsync(categoriaId);
         }
 
-        public async Task<Producto> AddProducto(Producto producto)
+        public async Task CreateProductoAsync(Producto producto)
         {
-            _context.Productos.Add(producto);
-            await _context.SaveChangesAsync();
-            return producto;
+            // Validar datos del producto
+            if (string.IsNullOrEmpty(producto.Nombre))
+                throw new ArgumentException("El nombre del producto es requerido");
+
+            if (producto.Precio <= 0)
+                throw new ArgumentException("El precio debe ser mayor que cero");
+
+            if (producto.Stock < 0)
+                throw new ArgumentException("El stock no puede ser negativo");
+
+            if (producto.Id_Categoria <= 0)
+                throw new ArgumentException("Se requiere una categoría válida");
+
+            // Establecer la fecha de creación si no está establecida
+            if (producto.Fecha_Creacion == DateTime.MinValue)
+                producto.Fecha_Creacion = DateTime.Now;
+
+            await _productoRepository.AddAsync(producto);
         }
 
-        public async Task<Producto> UpdateProducto(Producto producto)
+        public async Task UpdateProductoAsync(Producto producto)
         {
-            _context.Entry(producto).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return producto;
+            // Validar datos del producto
+            if (string.IsNullOrEmpty(producto.Nombre))
+                throw new ArgumentException("El nombre del producto es requerido");
+
+            if (producto.Precio <= 0)
+                throw new ArgumentException("El precio debe ser mayor que cero");
+
+            if (producto.Stock < 0)
+                throw new ArgumentException("El stock no puede ser negativo");
+
+            if (producto.Id_Categoria <= 0)
+                throw new ArgumentException("Se requiere una categoría válida");
+
+            // Verificar que el producto existe
+            var existingProducto = await _productoRepository.GetByIdAsync(producto.Id_Producto);
+            if (existingProducto == null)
+                throw new ArgumentException($"No se encontró el producto con ID {producto.Id_Producto}");
+
+            await _productoRepository.UpdateAsync(producto);
         }
 
-        public async Task<bool> DeleteProducto(int id)
+        public async Task DeleteProductoAsync(int id)
         {
-            var producto = await _context.Productos.FindAsync(id);
-            if (producto == null)
-                return false;
+            // Verificar que el producto existe antes de eliminarlo
+            var existingProducto = await _productoRepository.GetByIdAsync(id);
+            if (existingProducto == null)
+                throw new ArgumentException($"No se encontró el producto con ID {id}");
 
-            _context.Productos.Remove(producto);
-            await _context.SaveChangesAsync();
-            return true;
+            await _productoRepository.DeleteAsync(id);
         }
     }
 }
