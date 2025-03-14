@@ -11,6 +11,7 @@ import Carrito from '../views/Carrito.vue';
 import Tienda from '../views/Tienda.vue';
 import Checkout from '../views/Checkout.vue';
 import PrivateZone from '../views/PrivateZone.vue';
+import EntidadListView from '../views/EntidadListView.vue';
 
 
 const routes = [
@@ -26,6 +27,7 @@ const routes = [
   { path: '/tienda', component: Tienda, meta: { public: true } },
   { path: '/checkout', component: Checkout, meta: { public: true } },
   { path: '/privatezone', component: PrivateZone, meta: { public: true } },
+  { path: '/entidadlistview', component: EntidadListView, meta: { public: true } },
 ];
 
 const router = createRouter({

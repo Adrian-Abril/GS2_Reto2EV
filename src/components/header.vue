@@ -26,6 +26,9 @@
           <li class="nav-item">
             <router-link to="/blog" class="nav-link">Sobre nosotros</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/entidadlistview" class="nav-link">Autoria</router-link>
+          </li>
         </ul>
       </nav>
       
