@@ -1,0 +1,186 @@
+// Variables
+$primary-color: #0d6e72; // Color verde principal (FarMed)
+$accent-color: #f9a825; // Color naranja/dorado para subrayado
+$bg-color: #e0f2f1; // Color de fondo claro verde-azulado
+$text-color: #333;
+$placeholder-color: #999;
+$border-color: #ccc;
+$white: #fff;
+$font-family: 'Arial', sans-serif;
+
+// Register Container - Fondo principal
+.register-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg-color;
+  padding: 20px;
+}
+
+// Register Card - Tarjeta blanca central
+.register-card {
+  width: 100%;
+  max-width: 500px;
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+// Logo y cabecera
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-size: 2.5rem;
+  color: $primary-color;
+  margin: 0;
+  font-weight: 700;
+}
+
+.logo-underline {
+  width: 60px;
+  height: 3px;
+  background-color: $accent-color;
+  margin: 8px auto;
+}
+
+.slogan {
+  color: #666;
+  margin: 10px 0 0;
+  font-size: 1rem;
+}
+
+// Título del formulario
+.form-title {
+  font-size: 1.5rem;
+  color: $primary-color;
+  margin: 20px 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+// Formulario
+.register-form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: normal;
+    color: $text-color;
+    font-size: 1rem;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    font-family: $font-family;
+    font-size: 1rem;
+    box-sizing: border-box;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+    
+    &::placeholder {
+      color: $placeholder-color;
+    }
+  }
+}
+
+// Password hint
+.password-hint {
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+// Términos y condiciones
+.terms-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  
+  input[type="checkbox"] {
+    margin-right: 10px;
+    margin-top: 3px;
+  }
+  
+  label {
+    color: $text-color;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  .terms-link {
+    color: $primary-color;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Botón de Registro
+.register-button {
+  width: 100%;
+  padding: 12px;
+  background-color: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  text-align: center;
+}
+
+// Divider
+.divider {
+  height: 1px;
+  background-color: #eee;
+  margin: 25px 0 20px;
+}
+
+// Login link container
+.login-link-container {
+  text-align: center;
+  
+  p {
+    margin: 0 0 8px;
+    color: $text-color;
+    font-size: 0.95rem;
+  }
+  
+  .login-link {
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: 600;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 576px) {
+  .register-card {
+    padding: 20px;
+  }
+}

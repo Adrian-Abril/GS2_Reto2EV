@@ -1,0 +1,333 @@
+// Mobile-first approach
+
+.header {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  
+  .header-container {
+    padding: 0 1rem;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  // Logo y nombre de la marca
+  .brand {
+    display: flex;
+    align-items: center;
+    
+    .logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .logo {
+      width: 70px;
+      height: 70px;
+      margin-right: 0.75rem;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        -ms-interpolation-mode: nearest-neighbor;
+      }
+    }
+    
+    .brand-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #2e7d32;
+      margin: 0;
+      text-transform: uppercase;
+    }
+  }
+  
+  // Navegación principal
+  .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    max-width: 100%;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    visibility: hidden;
+    margin: 0;
+    
+    &.active {
+      transform: translateX(0);
+      visibility: visible;
+    }
+    
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding-top: 80px;
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    
+    .nav-item {
+      margin: 0.75rem 0;
+    }
+    
+    .nav-link {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+      
+      &:hover {
+        color: #2e7d32;
+      }
+      
+      &.router-link-active {
+        color: #2e7d32;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -5px;
+          height: 3px;
+          background-color: #2e7d32;
+          border-radius: 1.5px;
+        }
+      }
+    }
+  }
+  
+  // Acciones del usuario (login y carrito)
+  .user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    
+    .user-action {
+      display: flex;
+      
+      .action-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: #666;
+        position: relative;
+        
+        &:hover {
+          color: #2e7d32;
+        }
+        
+        .action-icon {
+          width: 24px;
+          height: 24px;
+          position: relative;
+          margin-bottom: 4px;
+          
+          &.user-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='12' cy='7' r='4'%3E%3C/circle%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+          
+          &.cart-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='21' r='1'%3E%3C/circle%3E%3Ccircle cx='20' cy='21' r='1'%3E%3C/circle%3E%3Cpath d='M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6'%3E%3C/path%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+        }
+        
+        .cart-container {
+          position: relative;
+        }
+        
+        .cart-badge {
+          position: absolute;
+          top: -6px;
+          right: -6px;
+          background-color: #e53935;
+          color: white;
+          border-radius: 50%;
+          width: 18px;
+          height: 18px;
+          font-size: 0.75rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+        }
+        
+        .action-text {
+          font-size: 0.75rem;
+          font-weight: 500;
+          color: #666;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+  
+  // Botón de menú móvil
+  .mobile-menu-toggle {
+    width: 30px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1010;
+    
+    span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background-color: #333;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+// Tablet
+@media (min-width: 481px) {
+  .header {
+    .header-container {
+      padding: 0 1.5rem;
+      height: 85px;
+    }
+    
+    .brand {
+      .logo {
+        width: 75px;
+        height: 75px;
+        margin-right: 1rem;
+      }
+      
+      .brand-name {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+// Pantallas medianas
+@media (min-width: 769px) {
+  .header {
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 90px;
+    }
+    
+    .brand {
+      .logo {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .brand-name {
+        font-size: 2.2rem;
+      }
+    }
+    
+    .mobile-menu-toggle {
+      display: none;
+    }
+    
+    .main-nav {
+      position: static;
+      transform: none;
+      visibility: visible;
+      flex: 1;
+      max-width: 700px;
+      margin: 0 1rem;
+      
+      .nav-list {
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 0;
+        height: auto;
+      }
+      
+      .nav-item {
+        margin: 0 0.3rem;
+      }
+      
+      .nav-link {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.5rem;
+      }
+    }
+  }
+}
+
+// Pantallas grandes
+@media (min-width: 1025px) {
+  .header {
+    .main-nav {
+      .nav-item {
+        margin: 0 0.5rem;
+      }
+      
+      .nav-link {
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+      }
+    }
+    
+    .user-actions {
+      .user-action {
+        .action-link {
+          .action-text {
+            font-size: 0.85rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Pantallas extra grandes
+@media (min-width: 1441px) {
+  .header {
+    .header-container {
+      max-width: 1400px;
+    }
+    
+    .brand {
+      .logo {
+        width: 90px;
+        height: 90px;
+      }
+      
+      .brand-name {
+        font-size: 2.4rem;
+      }
+    }
+  }
+}

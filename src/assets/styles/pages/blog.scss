@@ -1,0 +1,315 @@
+// Variables
+$primary-color: #0d6e72;
+$secondary-color: #e8f4f5;
+$accent-color: #ff9e00;
+$text-color: #333333;
+$light-gray: #f5f5f5;
+$medium-gray: #e0e0e0;
+$dark-gray: #888888;
+$white: #ffffff;
+$box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$border-radius: 8px;
+$transition: all 0.3s ease;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin section-padding {
+  padding: 80px 20px;
+  
+  @media (max-width: 768px) {
+    padding: 60px 15px;
+  }
+}
+
+// General styles
+.about-us-container {
+  font-family: 'Roboto', sans-serif;
+  color: $text-color;
+  line-height: 1.6;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: $primary-color;
+  margin-bottom: 40px;
+  font-weight: 700;
+  position: relative;
+  
+  &:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: $accent-color;
+    margin: 15px auto 0;
+  }
+}
+
+// About Section Styles
+.about-section {
+  @include section-padding;
+  background-color: $white;
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 40px;
+  
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
+}
+
+.image-container {
+  flex: 1;
+  
+  @media (max-width: 992px) {
+    margin-bottom: 30px;
+  }
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  object-fit: cover;
+}
+
+.text-container {
+  flex: 1;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+  color: $primary-color;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.description {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: $text-color;
+}
+
+.values-title {
+  font-size: 1.4rem;
+  color: $primary-color;
+  margin: 30px 0 15px;
+  font-weight: 600;
+}
+
+.values-list {
+  list-style-type: none;
+  padding: 0;
+  
+  li {
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+    
+    &:before {
+      content: '•';
+      color: $accent-color;
+      font-size: 1.5rem;
+      position: absolute;
+      left: 0;
+      top: -3px;
+    }
+  }
+}
+
+.value-highlight {
+  font-weight: 600;
+  color: $primary-color;
+}
+
+// Contact Section Styles
+.contact-section {
+  @include section-padding;
+  background-color: $secondary-color;
+}
+
+.contact-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-wrapper {
+  display: flex;
+  gap: 40px;
+  
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
+}
+
+.contact-info {
+  flex: 1;
+  background-color: $white;
+  padding: 30px;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}
+
+.info-item {
+  display: flex;
+  margin-bottom: 25px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  background-color: $secondary-color;
+  border-radius: 50%;
+  @include flex-center;
+  position: relative;
+  
+  &:before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: $primary-color;
+  }
+}
+
+.location-icon:before {
+  content: '\f3c5'; // map-marker-alt
+}
+
+.phone-icon:before {
+  content: '\f095'; // phone
+}
+
+.email-icon:before {
+  content: '\f0e0'; // envelope
+}
+
+.hours-icon:before {
+  content: '\f017'; // clock
+}
+
+.info-text {
+  h4 {
+    margin: 0 0 5px;
+    font-size: 1.1rem;
+    color: $primary-color;
+  }
+  
+  p {
+    margin: 0;
+    color: $dark-gray;
+  }
+}
+
+.contact-form {
+  flex: 1;
+  background-color: $white;
+  padding: 30px;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  
+  h3 {
+    font-size: 1.5rem;
+    color: $primary-color;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: $primary-color;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid $medium-gray;
+    border-radius: $border-radius;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: $transition;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+    }
+  }
+  
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+}
+
+.submit-button {
+  background-color: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: $border-radius;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition;
+  display: block;
+  width: 100%;
+  
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.3);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+  
+  .contact-info, .contact-form {
+    padding: 20px;
+  }
+}

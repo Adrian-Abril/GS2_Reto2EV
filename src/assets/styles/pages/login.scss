@@ -1,0 +1,235 @@
+// Variables
+$primary-color: #0d6e72; // Color verde principal (FarMed)
+$accent-color: #f9a825; // Color naranja/dorado para subrayado
+$bg-color: #e0f2f1; // Color de fondo claro verde-azulado
+$text-color: #333;
+$placeholder-color: #999;
+$border-color: #ccc;
+$white: #fff;
+$error-color: #e74c3c;
+$font-family: 'Arial', sans-serif;
+
+// Login Container - Fondo principal
+.login-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg-color;
+  padding: 20px;
+}
+
+// Login Card - Tarjeta blanca central
+.login-card {
+  width: 100%;
+  max-width: 450px;
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+}
+
+// Logo y título
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-size: 2.5rem;
+  color: $primary-color;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.logo-underline {
+  width: 60px;
+  height: 3px;
+  background-color: $accent-color;
+  margin: 10px auto;
+}
+
+.slogan {
+  color: #666;
+  margin: 10px 0 0;
+  font-size: 1rem;
+}
+
+// Título del formulario
+.form-title {
+  font-size: 1.5rem;
+  color: $primary-color;
+  margin: 25px 0;
+  font-weight: 600;
+}
+
+// Formulario
+.login-form {
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: $text-color;
+    font-size: 0.95rem;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    font-family: $font-family;
+    font-size: 1rem;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+    }
+    
+    &::placeholder {
+      color: $placeholder-color;
+    }
+  }
+}
+
+// Contenedor específico para el campo de contraseña
+.password-container {
+  position: relative;
+  
+  input {
+    width: 100%;
+    padding-right: 40px; // Espacio para el botón de mostrar/ocultar
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #777;
+    padding: 5px;
+    font-size: 1rem;
+    
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+// Opciones del formulario (Recordarme y Olvidaste tu contraseña)
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+}
+
+.remember-container {
+  display: flex;
+  align-items: center;
+  
+  input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  
+  label {
+    cursor: pointer;
+    color: #666;
+  }
+}
+
+.forgot-password {
+  color: $primary-color;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Botón de Iniciar Sesión
+.login-button {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 20px;
+  
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.3);
+  }
+}
+
+// Mensaje de error
+.error-message {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: rgba($error-color, 0.1);
+  border-left: 4px solid $error-color;
+  color: $error-color;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}
+
+// Footer del formulario (Registro)
+.form-footer {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  
+  p {
+    margin: 0 0 10px;
+    color: #666;
+  }
+  
+  .register-link {
+    color: $primary-color;
+    font-weight: 600;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 480px) {
+  .login-card {
+    padding: 20px;
+  }
+  
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    
+    .forgot-password {
+      margin-top: 10px;
+    }
+  }
+}

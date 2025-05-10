@@ -1,0 +1,29 @@
+@use "./_variables" as *;
+@use "./_mixins" as *;
+
+/* Estilos globales */
+/* Añadir estos estilos al archivo principal de estilos (App.vue o main.scss) */
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* altura del viewport */
+}
+
+.carrito-page {
+  flex: 1; /* Esto hace que el contenido principal ocupe todo el espacio disponible */
+  display: flex;
+  flex-direction: column;
+}
+
+.carrito-container {
+  flex: 1; /* Esto asegura que el contenedor del carrito se expanda */
+  /* resto de tus estilos existentes */
+}
+
+/* No es necesario modificar el footer */

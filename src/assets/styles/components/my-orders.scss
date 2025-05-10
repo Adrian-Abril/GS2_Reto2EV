@@ -1,0 +1,379 @@
+// Variables
+$primary-color: #2e7d32;
+$secondary-color: #e8f5e9;
+$accent-color: #1b5e20;
+$danger-color: #d32f2f;
+$text-primary: #333333;
+$text-secondary: #666666;
+$text-light: #999999;
+$border-color: #e0e0e0;
+$bg-light: #f8f9fa;
+$white: #ffffff;
+$box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+$border-radius: 8px;
+$transition: all 0.3s ease;
+
+// Status colors
+$status-process: #ff9800;
+$status-shipped: #2196f3;
+$status-delivered: #4caf50;
+$status-cancelled: #f44336;
+
+.my-orders {
+  .orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .section-info {
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0 0 0.5rem;
+      }
+      
+      p {
+        font-size: 1rem;
+        color: $text-secondary;
+        margin: 0;
+      }
+    }
+    
+    .section-actions {
+      .btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        
+        i {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+  
+  .orders-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .filter-group {
+      display: flex;
+      align-items: center;
+      
+      label {
+        font-size: 0.9rem;
+        color: $text-secondary;
+        margin-right: 0.5rem;
+        white-space: nowrap;
+      }
+      
+      .filter-select {
+        padding: 0.5rem;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        background-color: $white;
+        font-size: 0.9rem;
+        color: $text-primary;
+        
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+        }
+      }
+    }
+    
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+      
+      .search-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $text-secondary;
+        font-size: 0.9rem;
+      }
+      
+      .search-input {
+        width: 100%;
+        padding: 0.5rem 0.5rem 0.5rem 2.25rem;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+        }
+        
+        &::placeholder {
+          color: $text-light;
+        }
+      }
+    }
+  }
+  
+  .orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    .order-card {
+      padding: 0;
+      overflow: hidden;
+      
+      .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid $border-color;
+        background-color: $bg-light;
+        
+        @media (max-width: 576px) {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.75rem;
+        }
+        
+        .order-info {
+          h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+          }
+          
+          .order-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            
+            .order-date {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              font-size: 0.9rem;
+              color: $text-secondary;
+              
+              i {
+                color: $primary-color;
+              }
+            }
+          }
+        }
+        
+        .order-amount {
+          text-align: right;
+          
+          .amount-label {
+            display: block;
+            font-size: 0.85rem;
+            color: $text-secondary;
+            margin-bottom: 0.25rem;
+          }
+          
+          .amount-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: $primary-color;
+          }
+          
+          @media (max-width: 576px) {
+            text-align: left;
+            width: 100%;
+            
+            .amount-label, .amount-value {
+              display: inline;
+              margin-right: 0.5rem;
+            }
+          }
+        }
+      }
+      
+      .order-content {
+        display: flex;
+        padding: 1.5rem;
+        
+        @media (max-width: 768px) {
+          flex-direction: column;
+        }
+        
+        .order-items {
+          flex: 1;
+          padding-right: 1.5rem;
+          
+          @media (max-width: 768px) {
+            padding-right: 0;
+            padding-bottom: 1.5rem;
+          }
+          
+          h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0 0 1rem;
+            color: $text-primary;
+          }
+          
+          .items-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            
+            .item {
+              display: flex;
+              justify-content: space-between;
+              padding: 0.75rem 0;
+              border-bottom: 1px solid $border-color;
+              
+              &:last-child {
+                border-bottom: none;
+              }
+              
+              .item-name {
+                font-size: 0.95rem;
+                color: $text-primary;
+              }
+              
+              .item-details {
+                display: flex;
+                gap: 0.75rem;
+                align-items: center;
+                
+                .item-quantity {
+                  font-size: 0.9rem;
+                  color: $text-secondary;
+                }
+                
+                .item-price {
+                  font-size: 0.95rem;
+                  font-weight: 600;
+                  color: $text-primary;
+                }
+              }
+            }
+          }
+        }
+        
+        .order-actions {
+          width: 220px;
+          border-left: 1px solid $border-color;
+          padding-left: 1.5rem;
+          
+          @media (max-width: 768px) {
+            width: 100%;
+            border-left: none;
+            border-top: 1px solid $border-color;
+            padding-left: 0;
+            padding-top: 1.5rem;
+          }
+          
+          h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0 0 1rem;
+            color: $text-primary;
+          }
+          
+          .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            
+            .btn {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 0.5rem;
+              
+              i {
+                font-size: 0.9rem;
+              }
+            }
+            
+            .btn-block {
+              width: 100%;
+            }
+            
+            .btn-danger {
+              background-color: $danger-color;
+              color: $white;
+              
+              &:hover {
+                background-color: darken($danger-color, 10%);
+              }
+            }
+          }
+        }
+      }
+      
+      .order-footer {
+        padding: 1rem 1.5rem;
+        border-top: 1px solid $border-color;
+        background-color: rgba($secondary-color, 0.5);
+        
+        .tracking-info {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          color: $text-secondary;
+          font-size: 0.9rem;
+          
+          i {
+            color: $primary-color;
+          }
+          
+          strong {
+            color: $text-primary;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+  
+  // Status badges para pedidos
+  .status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    
+    &.en-proceso {
+      background-color: rgba($status-process, 0.1);
+      color: $status-process;
+    }
+    
+    &.enviado {
+      background-color: rgba($status-shipped, 0.1);
+      color: $status-shipped;
+    }
+    
+    &.entregado {
+      background-color: rgba($status-delivered, 0.1);
+      color: $status-delivered;
+    }
+    
+    &.cancelado {
+      background-color: rgba($status-cancelled, 0.1);
+      color: $status-cancelled;
+    }
+  }
+}
