@@ -1,14 +1,12 @@
 <template>
     <div class="categoria-card">
-      <router-link :to="categoria.enlace" class="categoria-link">
-        <div class="categoria-imagen">
+              <div class="categoria-imagen">
           <img :src="categoria.imagen" :alt="categoria.nombre">
         </div>
         <div class="categoria-contenido">
           <h3>{{ categoria.nombre }}</h3>
           <span class="ver-productos">Ver productos</span>
         </div>
-      </router-link>
     </div>
   </template>
   

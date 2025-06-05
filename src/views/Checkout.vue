@@ -475,7 +475,7 @@
         }
         return codigo;
       },
-      finalizarCompra() {
+      async finalizarCompra() {
         if (!this.aceptarCondiciones) {
           this.errorCondiciones = true;
           return;
@@ -484,6 +484,35 @@
         this.errorCondiciones = false;
         this.numeroPedido = this.generarNumeroPedido();
         
+         const payload = {
+          productos: this.productos.map(p => ({
+            medicamentoId: p.id,
+            cantidad: p.cantidad,
+            precio: p.precio
+          }))
+        };
+
+        try{
+          const response = await fetch('http://localhost:5000/api/compras/finalizar', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(payload)
+          });
+
+          if(!response.ok) throw new Error(`Error al realizar la compra: ${response.status} ${response.statusText}`)
+          const data = await response.json();
+          alert("Compra realizada con exito, ID de compra: " + data.id);
+          this.productos = [];
+          this.$router.push('/perfil');
+        }catch(error){
+          console.error("Error al registrar la compra", error);
+          alert("Error al realizar la compra")
+        }
+
+
         // Vaciar el carrito
         localStorage.removeItem('carrito');
         

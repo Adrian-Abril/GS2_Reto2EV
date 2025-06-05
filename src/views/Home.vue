@@ -143,6 +143,7 @@ import CategoriaCard from '@/components/CategoriaCard.vue';
 import ProductoCard from '@/components/ProductoCard.vue';
 import ArticuloCard from '@/components/ArticuloCard.vue';
 import TestimonioCard from '@/components/TestimonioCard.vue';
+import axios from 'axios';
 
 export default {
   name: 'Home',
@@ -182,72 +183,8 @@ export default {
           icono: 'skin'
         }
       ],
-      categorias: [
-        {
-          id: 1,
-          nombre: 'Medicamentos',
-          imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWbFX6gnr9tZXJZLqNtcm86EeC1YdY8RodXxUMIQfCqwA68Ck5EXU_xPj3pBLP8Arv8Hk&usqp=CAU',
-          enlace: '/tienda?categoria=Medicamentos'
-        },
-        {
-          id: 2,
-          nombre: 'Dermocosmética',
-          imagen: 'https://www.zschimmer-schwarz.es/app/uploads/2019/11/Dermocosm%C3%A9tica.jpg',
-          enlace: '/tienda?categoria=Dermocosmética'
-        },
-        {
-          id: 3,
-          nombre: 'Vitaminas y Suplementos',
-          imagen: 'https://static.vecteezy.com/system/resources/previews/036/094/758/non_2x/ai-generated-plastic-supplement-multivitamin-bottles-on-transparent-background-free-png.png',
-          enlace: '/tienda?categoria=Vitaminas%20y%20Suplementos'
-        },
-        {
-          id: 4,
-          nombre: 'Higiene Bucal',
-          imagen: 'https://www.clinicadentalsedi.es/wp-content/uploads/2019/10/consejos-para-una-higiene-dental-de-hierro-1.jpg',
-          enlace: '/tienda?categoria=Higiene%20Bucal'
-        },
-        {
-          id: 5,
-          nombre: 'Primeros Auxilios',
-          imagen: 'https://www.poligonosindustrialesasturias.com/udecontrol_datos/objetos/2432.jpg',
-          enlace: '/tienda?categoria=Primeros%20Auxilios'
-        }
-      ],
-      productosDestacados: [
-       {
-            id: 5,
-            nombre: 'Vitamina C 1000mg',
-            descripcion: 'Suplemento alimenticio para reforzar el sistema inmunológico y prevenir resfriados.',
-            precio: 9.95,
-            categoria: 'Vitaminas y Suplementos',
-            imagen: 'https://m.media-amazon.com/images/I/81JrTCGGNSL.jpg'
-        },
-        {
-            id: 11,
-            nombre: 'Protector Solar SPF 50+',
-            descripcion: 'Protección solar de amplio espectro contra rayos UVA y UVB, resistente al agua.',
-            precio: 21.99,
-            categoria: 'Dermocosmética',
-            imagen: 'https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5se8zaxwqp7kemidz43diywws4kqe/pf_square/u5wa3z31qn5se8zaxwqp7kemidz43diywws4kqe?t=resize&width=800&height=800'
-        },
-        {
-            id: 16,
-            nombre: 'Probióticos Digestivos',
-            descripcion: 'Suplemento con bacterias beneficiosas para mejorar la salud digestiva e intestinal.',
-            precio: 19.95,
-            categoria: 'Vitaminas y Suplementos',
-            imagen: 'https://www.nutergia.es/wp-content/uploads/2023/05/ERGYPHILUS-Conf-600x800.png'
-        },
-        {
-            id: 25,
-            nombre: 'Crema Muscular Árnica',
-            descripcion: 'Crema antiinflamatoria natural para dolores musculares y articulares.',
-            precio: 14.75,
-            categoria: 'Medicina Natural',
-            imagen: 'https://m.media-amazon.com/images/I/61a3aV5-aiL._AC_UF894,1000_QL80_.jpg'
-        },
-      ],
+      categorias: [],
+      productosDestacados: [],
       articulos: [
         {
           id: 1,
@@ -302,7 +239,39 @@ export default {
       }
     };
   },
+  mounted(){
+    this.getCategorias();
+    this.getProductosDestacados();
+  },
   methods: {
+    async getCategorias() {
+      try{
+        const res = await axios.get('http://localhost:5000/api/medicamentos/categorias');
+        const data = res.data;
+        this.categorias = data.map((nombre, index) => ({ id: index + 1, nombre, imagen: this.obtenerImagenCategoria(nombre)}));
+      }catch(error){
+        console.log("Error al obtener las categorias " + error)
+      }
+    },
+    obtenerImagenCategoria(nombre){
+      const imagenes = {
+        'Medicamentos':  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWbFX6gnr9tZXJZLqNtcm86EeC1YdY8RodXxUMIQfCqwA68Ck5EXU_xPj3pBLP8Arv8Hk&usqp=CAU',
+        'Dermocosmética': 'https://www.zschimmer-schwarz.es/app/uploads/2019/11/Dermocosmética.jpg',
+        'Vitaminas y Suplementos':  'https://static.vecteezy.com/system/resources/previews/036/094/758/non_2x/ai-generated-plastic-supplement-multivitamin-bottles-on-transparent-background-free-png.png',
+        'Higiene Bucal': 'https://postgradomedicina.com/wp-content/uploads/higiene-bucodental.jpg', 
+        'Primeros Auxilios':  'https://www.poligonosindustrialesasturias.com/udecontrol_datos/objetos/2432.jpg'
+      };
+      return imagenes[nombre] || 'https://via.placeholder.com/300x200?text=Categoría';
+    },
+    async getProductosDestacados(){
+      try{
+        const res = await axios.get('http://localhost:5000/api/medicamentos/destacados');
+        this.productosDestacados = res.data;
+         
+      }catch(error){
+        console.log("Error al obtener los productos destacados " + error)
+      }
+    },
     suscribirNewsletter() {
       // Aquí iría la lógica para guardar el email en una base de datos
       this.mostrarNotificacion({
