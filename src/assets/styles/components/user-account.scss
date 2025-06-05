@@ -37,6 +37,96 @@ $transition: all 0.3s ease;
   overflow: hidden;
 }
 
+.admin-panel{
+  margin-top: 30px;
+
+  h3{
+    color: $primary-color;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .admin-actions{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+
+    .admin-card{
+      flex:1;
+      padding: 10px 15px;
+      background-color: $secondary-color;
+      border: 1px solid $medium-gray;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: $transition;
+      font-weight: 600;
+      text-align: center;
+
+      &:hover{
+        background-color: lighten($secondary-color, 5%);
+        box-shadow: $box-shadow;
+      }
+    }
+  }
+  ul{
+    list-style: none;
+    padding: 0;
+
+    li{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding: 15px;
+      margin-bottom: 10px;
+      background-color: $light-gray;
+      border-radius: $border-radius;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+
+      input, select{
+        padding: 8px 15px;
+        border: 1px solid $medium-gray;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        flex: 1;
+
+        &:focus{
+          border-color: $primary-color;
+          outline: none;
+        }
+      }
+      input[type="checkbox"]{
+        flex:none;
+        transform: scale(1.2);
+        margin-right: 5px;
+      }
+
+      button{
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: $transition;
+
+        &:hover{
+          background-color: darken($primary-color, 5%);
+        }
+
+        &:last-child{
+          background-color: #c0392b;
+
+          &:hover{
+            background-color: darken(#c0392b, 5%);
+          }
+        }
+      }
+    }
+  }
+}
+
 // User Header
 .user-header {
   background-color: $primary-color;

@@ -3,7 +3,7 @@
     <div class="header-container">
       <!-- Logo y nombre -->
       <div class="brand">
-        <router-link to="/home" class="logo-link">
+        <router-link to="/" class="logo-link">
           <div class="logo">
             <img src="@/assets/images/1.png" alt="Logo FARMED" />
           </div>
@@ -15,7 +15,7 @@
       <nav class="main-nav" :class="{ 'active': menuActive }">
         <ul class="nav-list">
           <li class="nav-item">
-            <router-link to="/home" class="nav-link">Inicio</router-link>
+            <router-link to="/" class="nav-link">Inicio</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/tienda" class="nav-link">Medicamentos</router-link>
